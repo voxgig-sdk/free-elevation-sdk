@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "f@vi-di.fr"
+      }
+      description: "This API provides access to elevation data for any point on Earth without any cost. Users can retrieve elevation information by making GET requests with latitude and longitude parameters. The digital elevation data comes from ESA's Copernicus program."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.elevation-api.eu/v1"
+        }
+      ]
+      title: "Free Elevation API"
+      version: "1.0.0"
+      "x-documentation": "https://www.elevation-api.eu/"
+    }
+  }
+}
+
+}

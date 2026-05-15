@@ -1,0 +1,224 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Free Elevation API",
+    "description": "This API provides access to elevation data for any point on Earth without any cost. Users can retrieve elevation information by making GET requests with latitude and longitude parameters. The digital elevation data comes from ESA's Copernicus program.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "f@vi-di.fr"
+    },
+    "x-documentation": "https://www.elevation-api.eu/"
+  },
+  "servers": [
+    {
+      "url": "https://www.elevation-api.eu/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/elevation/{lat}/{lon}": {
+      "get": {
+        "summary": "Get elevation for a single point",
+        "description": "Retrieves the elevation in meters for a specific geographic coordinate using WGS-84 datum. Returns plain text by default or JSON when the json parameter is included.",
+        "operationId": "getSingleElevation",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "path",
+            "description": "Latitude of the location (WGS-84)",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "example": 46.24566
+          },
+          {
+            "name": "lon",
+            "in": "path",
+            "description": "Longitude of the location (WGS-84)",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "example": 6.17081
+          },
+          {
+            "name": "json",
+            "in": "query",
+            "description": "Append this parameter to have the result returned as JSON format",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with elevation data",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "42"
+                },
+                "example": "42"
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elevation": {
+                      "type": "number",
+                      "description": "Elevation in meters"
+                    }
+                  }
+                },
+                "example": {
+                  "elevation": 42
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second limit on free plan)"
+          },
+          "501": {
+            "description": "Point is not in the DEM dataset",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "elevation": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-rate-limit": "10 requests per second (free plan)"
+      }
+    },
+    "/elevation": {
+      "get": {
+        "summary": "Get elevation for multiple points",
+        "description": "Retrieves elevation data for multiple geographic coordinates at once. Coordinates should be provided as a JSON array of [latitude, longitude] pairs.",
+        "operationId": "getMultipleElevations",
+        "parameters": [
+          {
+            "name": "pts",
+            "in": "query",
+            "description": "Array of coordinate pairs in format [[lat1,lon1],[lat2,lon2],[lat3,lon3]]. Coordinates use WGS-84 datum.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "[[46.24566,6.17081],[46.85499,6.78134]]"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with elevation data for all provided coordinates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "latitude": {
+                        "type": "number",
+                        "description": "Latitude of the point"
+                      },
+                      "longitude": {
+                        "type": "number",
+                        "description": "Longitude of the point"
+                      },
+                      "elevation": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "Elevation in meters, or null if not available"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second limit on free plan)"
+          }
+        },
+        "x-rate-limit": "10 requests per second (free plan)"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ElevationResponse": {
+        "type": "object",
+        "properties": {
+          "elevation": {
+            "type": "number",
+            "nullable": true,
+            "description": "Elevation in meters, or null if the point is not in the DEM dataset"
+          }
+        }
+      },
+      "MultipleElevationResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "description": "Latitude of the point"
+            },
+            "longitude": {
+              "type": "number",
+              "description": "Longitude of the point"
+            },
+            "elevation": {
+              "type": "number",
+              "nullable": true,
+              "description": "Elevation in meters, or null if not available"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-rate-limits": {
+    "free-plan": {
+      "limit": "10 requests per second",
+      "description": "Free plan rate limit. Commercial plans available with unlimited queries starting at 100€/month"
+    }
+  },
+  "x-data-source": "ESA's Copernicus program",
+  "x-commercial-support": {
+    "available": true,
+    "features": [
+      "Unlimited queries",
+      "SLA support",
+      "Additional elevation data layers"
+    ],
+    "pricing": "Starting at 100€/month",
+    "contact": "f@vi-di.fr"
+  }
+}

@@ -1,0 +1,18 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: elevation: {
+    path: "/elevation": {
+      op: list: method: *GET
+    }
+    path: "/elevation/{lat}/{lon}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.elevation`")|top
+    }
+  }
+
+}

@@ -1,0 +1,45 @@
+# BasicElevationFlow
+
+main: kit: flow: BasicElevationFlow:
+{
+  entity: "elevation",
+  kind: "basic",
+  name: "BasicElevationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "elevation_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "elevation_ref01",
+        srcdatavar: "elevation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "elevation01",
+        lat: "lat01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-elevation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicElevationFlow"
+}
