@@ -1,7 +1,7 @@
 package core
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/free-elevation-sdk/go/utility/struct"
 )
 
 type Response struct {

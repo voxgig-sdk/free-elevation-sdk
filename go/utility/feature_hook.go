@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/free-elevation-sdk/core"
+	"github.com/voxgig-sdk/free-elevation-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

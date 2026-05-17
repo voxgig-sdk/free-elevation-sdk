@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/free-elevation-sdk/core"
+	"github.com/voxgig-sdk/free-elevation-sdk/go/core"
 )
 
 type BaseFeature struct {
