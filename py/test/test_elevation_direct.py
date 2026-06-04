@@ -108,14 +108,12 @@ def _elevation_direct_setup(mockres):
     env = runner.env_override({
         "FREEELEVATION_TEST_ELEVATION_ENTID": {},
         "FREEELEVATION_TEST_LIVE": "FALSE",
-        "FREEELEVATION_APIKEY": "NONE",
     })
 
     live = env.get("FREEELEVATION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("FREEELEVATION_APIKEY"),
         }
         client = FreeElevationSDK(merged_opts)
         return {

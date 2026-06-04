@@ -17,7 +17,17 @@
         ],
         "title": "Free Elevation API",
         "version": "1.0.0",
-        "x-documentation": "https://www.elevation-api.eu/"
+        "x-documentation": "https://www.elevation-api.eu/",
+        "tagline": "Look up the elevation in metres for any point on Earth using ESA Copernicus DEM data",
+        "homepage": "https://www.elevation-api.eu/",
+        "docs_url": "https://www.elevation-api.eu/",
+        "license_short": "No rights reserved (CC0); attribution to ESA Copernicus appreciated.",
+        "license_md": "- Service published under a \"no rights reserved\" stance (effectively CC0) by Frank Villaro-Dixon.\n- Underlying elevation data comes from the European Space Agency's Copernicus program; downstream users should credit ESA Copernicus where appropriate.\n- The free tier is rate limited (see the operational notes); paid plans exist for higher throughput.",
+        "about_md": "The Free Elevation API is a small public service that returns the elevation, in metres, of any latitude/longitude pair on Earth. It is operated by Frank Villaro-Dixon at [elevation-api.eu](https://www.elevation-api.eu/) and is backed by digital elevation data from the European Space Agency's [Copernicus](https://www.copernicus.eu/) programme.\n\nWhat you get from the API:\n\n- A single-point lookup at `GET /v1/elevation/{lat}/{lon}` returning the elevation in metres (append `?json` for a JSON response).\n- A batch lookup at `GET /v1/elevation?pts=[[lat,lon],[lat,lon],...]` for multiple coordinates in one request.\n- Coordinates use WGS-84. Points outside the dataset return `null` (or HTTP 501).\n\nOperational notes: the free plan is capped at roughly 10 requests/second, no API key or authentication is required, and CORS is enabled so the endpoints can be called directly from browsers. Paid plans with higher limits and SLA support are available from the operator.",
+        "entity_desc": {
+          "elevation": "Elevation readings in metres above sea level for a given WGS-84 latitude/longitude, served from `GET /v1/elevation/{lat}/{lon}` for a single point or `GET /v1/elevation?pts=[[lat,lon],...]` for batched lookups."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +35,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "elevation": {
