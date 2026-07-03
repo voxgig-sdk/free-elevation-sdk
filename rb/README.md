@@ -10,13 +10,13 @@ The Ruby SDK for the FreeElevation API — an entity-oriented client using idiom
 
 ## Install
 ```bash
-gem install free-elevation-sdk
+gem install voxgig-sdk-free-elevation
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "free-elevation-sdk"
+gem "voxgig-sdk-free-elevation"
 ```
 
 Then run:

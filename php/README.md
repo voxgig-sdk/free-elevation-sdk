@@ -10,7 +10,7 @@ The PHP SDK for the FreeElevation API — an entity-oriented client using PHP co
 
 ## Install
 ```bash
-composer require voxgig/free-elevation-sdk
+composer require voxgig-sdk/free-elevation
 ```
 
 

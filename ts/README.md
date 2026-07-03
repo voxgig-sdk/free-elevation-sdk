@@ -10,7 +10,7 @@ The TypeScript SDK for the FreeElevation API — a type-safe, entity-oriented cl
 
 ## Install
 ```bash
-npm install free-elevation
+npm install @voxgig-sdk/free-elevation
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The Python SDK for the FreeElevation API — an entity-oriented client following
 
 ## Install
 ```bash
-pip install free-elevation-sdk
+pip install voxgig-sdk-free-elevation
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the FreeElevation API — an entity-oriented client using Lua co
 
 ## Install
 ```bash
-luarocks install free-elevation-sdk
+luarocks install voxgig-sdk-free-elevation
 ```
 
 If the module is not yet published, add the source directory to

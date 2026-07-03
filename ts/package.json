@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/free-elevation",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Free Elevation public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "free-elevation"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/free-elevation-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/free-elevation-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/free-elevation-sdk/issues"
+  },
   "main": "dist/FreeElevationSDK.js",
   "type": "commonjs",
   "types": "dist/FreeElevationSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "FreeElevation",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},
