@@ -129,6 +129,7 @@ func elevationBasicSetup(extra map[string]any) *entityTestSetup {
 		"FREEELEVATION_TEST_ELEVATION_ENTID": idmap,
 		"FREEELEVATION_TEST_LIVE":      "FALSE",
 		"FREEELEVATION_TEST_EXPLAIN":   "FALSE",
+		"FREEELEVATION_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["FREEELEVATION_TEST_ELEVATION_ENTID"])
@@ -139,6 +140,7 @@ func elevationBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["FREEELEVATION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["FREEELEVATION_APIKEY"],
 			},
 			extra,
 		})

@@ -123,12 +123,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'FREEELEVATION_TEST_ELEVATION_ENTID': {},
     'FREEELEVATION_TEST_LIVE': 'FALSE',
+    'FREEELEVATION_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.FREEELEVATION_TEST_LIVE
 
   if (live) {
     const client = new FreeElevationSDK({
+      apikey: env.FREEELEVATION_APIKEY,
     })
 
     let idmap: any = env['FREEELEVATION_TEST_ELEVATION_ENTID']

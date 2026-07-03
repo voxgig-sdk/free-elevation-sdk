@@ -15,6 +15,9 @@ module FreeElevationConfig
       },
       "options" => {
         "base" => "https://www.elevation-api.eu/v1",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -26,43 +29,45 @@ module FreeElevationConfig
         "elevation" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "elevation",
               "req" => false,
               "type" => "`$NUMBER`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "latitude",
               "req" => false,
               "type" => "`$NUMBER`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "longitude",
               "req" => false,
               "type" => "`$NUMBER`",
-              "active" => true,
               "index$" => 2,
             },
           ],
           "name" => "elevation",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "[[46.24566,6.17081],[46.85499,6.78134]]",
                         "kind" => "query",
                         "name" => "pts",
                         "orig" => "pts",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -80,46 +85,46 @@ module FreeElevationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => 46.24566,
                         "kind" => "param",
                         "name" => "lat",
                         "orig" => "lat",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => 6.17081,
                         "kind" => "param",
                         "name" => "lon",
                         "orig" => "lon",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "json",
                         "orig" => "json",
                         "reqd" => false,
                         "type" => "`$BOOLEAN`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -139,13 +144,11 @@ module FreeElevationConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.elevation`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },

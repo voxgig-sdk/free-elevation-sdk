@@ -1,20 +1,8 @@
 # FreeElevation SDK
 
-Look up the elevation in metres for any point on Earth using ESA Copernicus DEM data
+Free Elevation API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Free Elevation API
-
-The Free Elevation API is a small public service that returns the elevation, in metres, of any latitude/longitude pair on Earth. It is operated by Frank Villaro-Dixon at [elevation-api.eu](https://www.elevation-api.eu/) and is backed by digital elevation data from the European Space Agency's [Copernicus](https://www.copernicus.eu/) programme.
-
-What you get from the API:
-
-- A single-point lookup at `GET /v1/elevation/{lat}/{lon}` returning the elevation in metres (append `?json` for a JSON response).
-- A batch lookup at `GET /v1/elevation?pts=[[lat,lon],[lat,lon],...]` for multiple coordinates in one request.
-- Coordinates use WGS-84. Points outside the dataset return `null` (or HTTP 501).
-
-Operational notes: the free plan is capped at roughly 10 requests/second, no API key or authentication is required, and CORS is enabled so the endpoints can be called directly from browsers. Paid plans with higher limits and SLA support are available from the operator.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install free-elevation-sdk
 luarocks install free-elevation-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { FreeElevationSDK } from 'free-elevation'
 
-const client = new FreeElevationSDK({})
+const client = new FreeElevationSDK({
+  apikey: process.env.FREE-ELEVATION_APIKEY,
+})
 
 // List all elevations
 const elevations = await client.Elevation().list()
+console.log(elevations.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Elevation** | Elevation readings in metres above sea level for a given WGS-84 latitude/longitude, served from `GET /v1/elevation/{lat}/{lon}` for a single point or `GET /v1/elevation?pts=[[lat,lon],...]` for batched lookups. | `/elevation` |
+| **Elevation** |  | `/elevation` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,17 +100,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from freeelevation_sdk import FreeElevationSDK
 
-client = FreeElevationSDK({})
+client = FreeElevationSDK({
+    "apikey": os.environ.get("FREE-ELEVATION_APIKEY"),
+})
 
 # List all elevations
-elevations, err = client.Elevation(None).list(None, None)
+elevations, err = client.Elevation().list()
+print(elevations)
 
 # Load a specific elevation
-elevation, err = client.Elevation(None).load(
-    {"id": "example_id"}, None
-)
+elevation, err = client.Elevation().load({"id": "example_id"})
+print(elevation)
 ```
 
 ### PHP
@@ -129,15 +122,17 @@ elevation, err = client.Elevation(None).load(
 <?php
 require_once 'freeelevation_sdk.php';
 
-$client = new FreeElevationSDK([]);
+$client = new FreeElevationSDK([
+    "apikey" => getenv("FREE-ELEVATION_APIKEY"),
+]);
 
 // List all elevations
-[$elevations, $err] = $client->Elevation(null)->list(null, null);
+[$elevations, $err] = $client->Elevation()->list();
+print_r($elevations);
 
 // Load a specific elevation
-[$elevation, $err] = $client->Elevation(null)->load(
-    ["id" => "example_id"], null
-);
+[$elevation, $err] = $client->Elevation()->load(["id" => "example_id"]);
+print_r($elevation);
 ```
 
 ### Golang
@@ -145,10 +140,13 @@ $client = new FreeElevationSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/free-elevation-sdk/go"
 
-client := sdk.NewFreeElevationSDK(map[string]any{})
+client := sdk.NewFreeElevationSDK(map[string]any{
+    "apikey": os.Getenv("FREE-ELEVATION_APIKEY"),
+})
 
 // List all elevations
 elevations, err := client.Elevation(nil).List(nil, nil)
+fmt.Println(elevations)
 ```
 
 ### Ruby
@@ -156,15 +154,17 @@ elevations, err := client.Elevation(nil).List(nil, nil)
 ```ruby
 require_relative "FreeElevation_sdk"
 
-client = FreeElevationSDK.new({})
+client = FreeElevationSDK.new({
+  "apikey" => ENV["FREE-ELEVATION_APIKEY"],
+})
 
 # List all elevations
-elevations, err = client.Elevation(nil).list(nil, nil)
+elevations, err = client.Elevation().list
+puts elevations
 
 # Load a specific elevation
-elevation, err = client.Elevation(nil).load(
-  { "id" => "example_id" }, nil
-)
+elevation, err = client.Elevation().load({ "id" => "example_id" })
+puts elevation
 ```
 
 ### Lua
@@ -172,15 +172,17 @@ elevation, err = client.Elevation(nil).load(
 ```lua
 local sdk = require("free-elevation_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("FREE-ELEVATION_APIKEY"),
+})
 
 -- List all elevations
-local elevations, err = client:Elevation(nil):list(nil, nil)
+local elevations, err = client:Elevation():list()
+print(elevations)
 
 -- Load a specific elevation
-local elevation, err = client:Elevation(nil):load(
-  { id = "example_id" }, nil
-)
+local elevation, err = client:Elevation():load({ id = "example_id" })
+print(elevation)
 ```
 
 ## Unit testing in offline mode
@@ -199,25 +201,21 @@ const result = await client.Elevation().load({ id: 'test01' })
 ### Python
 
 ```python
-client = FreeElevationSDK.test(None, None)
-result, err = client.Elevation(None).load(
-    {"id": "test01"}, None
-)
+client = FreeElevationSDK.test()
+result, err = client.Elevation().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = FreeElevationSDK::test(null, null);
-[$result, $err] = $client->Elevation(null)->load(
-    ["id" => "test01"], null
-);
+$client = FreeElevationSDK::test();
+[$result, $err] = $client->Elevation()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Elevation(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -226,19 +224,15 @@ result, err := client.Elevation(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeElevationSDK.test(nil, nil)
-result, err = client.Elevation(nil).load(
-  { "id" => "test01" }, nil
-)
+client = FreeElevationSDK.test
+result, err = client.Elevation().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Elevation(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Elevation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -342,14 +336,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Free Elevation API
-
-- Upstream: [https://www.elevation-api.eu/](https://www.elevation-api.eu/)
-
-- Service published under a "no rights reserved" stance (effectively CC0) by Frank Villaro-Dixon.
-- Underlying elevation data comes from the European Space Agency's Copernicus program; downstream users should credit ESA Copernicus where appropriate.
-- The free tier is rate limited (see the operational notes); paid plans exist for higher throughput.
 
 ---
 

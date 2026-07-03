@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'FREE_ELEVATION_TEST_ELEVATION_ENTID': idmap,
     'FREE_ELEVATION_TEST_LIVE': 'FALSE',
     'FREE_ELEVATION_TEST_EXPLAIN': 'FALSE',
+    'FREE_ELEVATION_APIKEY': 'NONE',
   })
 
   idmap = env['FREE_ELEVATION_TEST_ELEVATION_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new FreeElevationSDK(merge([
       {
+        apikey: env.FREE_ELEVATION_APIKEY,
       },
       extra
     ]))

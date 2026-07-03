@@ -92,6 +92,7 @@ function elevation_basic_setup($extra)
         "FREEELEVATION_TEST_ELEVATION_ENTID" => $idmap,
         "FREEELEVATION_TEST_LIVE" => "FALSE",
         "FREEELEVATION_TEST_EXPLAIN" => "FALSE",
+        "FREEELEVATION_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -103,6 +104,7 @@ function elevation_basic_setup($extra)
     if ($env["FREEELEVATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["FREEELEVATION_APIKEY"],
             ],
             $extra ?? [],
         ]);

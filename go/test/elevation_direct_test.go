@@ -180,12 +180,14 @@ func elevationDirectSetup(mockres any) *elevationDirectSetupResult {
 	env := envOverride(map[string]any{
 		"FREEELEVATION_TEST_ELEVATION_ENTID": map[string]any{},
 		"FREEELEVATION_TEST_LIVE":    "FALSE",
+		"FREEELEVATION_APIKEY":       "NONE",
 	})
 
 	live := env["FREEELEVATION_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["FREEELEVATION_APIKEY"],
 		}
 		client := sdk.NewFreeElevationSDK(mergedOpts)
 

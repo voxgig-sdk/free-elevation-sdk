@@ -98,6 +98,7 @@ function elevation_basic_setup(extra)
     ["FREEELEVATION_TEST_ELEVATION_ENTID"] = idmap,
     ["FREEELEVATION_TEST_LIVE"] = "FALSE",
     ["FREEELEVATION_TEST_EXPLAIN"] = "FALSE",
+    ["FREEELEVATION_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -109,6 +110,7 @@ function elevation_basic_setup(extra)
   if env["FREEELEVATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["FREEELEVATION_APIKEY"],
       },
       extra or {},
     })

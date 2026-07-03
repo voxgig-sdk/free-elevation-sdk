@@ -123,12 +123,14 @@ function elevation_direct_setup($mockres)
     $env = Runner::env_override([
         "FREEELEVATION_TEST_ELEVATION_ENTID" => [],
         "FREEELEVATION_TEST_LIVE" => "FALSE",
+        "FREEELEVATION_APIKEY" => "NONE",
     ]);
 
     $live = $env["FREEELEVATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["FREEELEVATION_APIKEY"],
         ];
         $client = new FreeElevationSDK($merged_opts);
         return [

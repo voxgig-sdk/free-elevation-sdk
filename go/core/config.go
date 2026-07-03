@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://www.elevation-api.eu/v1",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -25,43 +28,45 @@ func MakeConfig() map[string]any {
 			"elevation": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "elevation",
 						"req": false,
 						"type": "`$NUMBER`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "latitude",
 						"req": false,
 						"type": "`$NUMBER`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "longitude",
 						"req": false,
 						"type": "`$NUMBER`",
-						"active": true,
 						"index$": 2,
 					},
 				},
 				"name": "elevation",
 				"op": map[string]any{
 					"list": map[string]any{
+						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"example": "[[46.24566,6.17081],[46.85499,6.78134]]",
 											"kind": "query",
 											"name": "pts",
 											"orig": "pts",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -79,46 +84,46 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "list",
 					},
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"example": 46.24566,
 											"kind": "param",
 											"name": "lat",
 											"orig": "lat",
 											"reqd": true,
 											"type": "`$NUMBER`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"example": 6.17081,
 											"kind": "param",
 											"name": "lon",
 											"orig": "lon",
 											"reqd": true,
 											"type": "`$NUMBER`",
-											"active": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "json",
 											"orig": "json",
 											"reqd": false,
 											"type": "`$BOOLEAN`",
-											"active": true,
 										},
 									},
 								},
@@ -138,13 +143,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.elevation`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
