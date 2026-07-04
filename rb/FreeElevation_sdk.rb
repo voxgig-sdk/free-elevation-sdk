@@ -208,13 +208,7 @@ class FreeElevationSDK
   end
 
 
-  # Idiomatic facade: client.elevation.list / client.elevation.load({ "id" => ... })
-  def elevation
-    require_relative 'entity/elevation_entity'
-    @elevation ||= ElevationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.elevation instead.
+  # Canonical facade: client.Elevation.list / client.Elevation.load({ "id" => ... })
   def Elevation(data = nil)
     require_relative 'entity/elevation_entity'
     ElevationEntity.new(self, data)

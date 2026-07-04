@@ -29,18 +29,16 @@ require_once 'freeelevation_sdk.php';
 $client = new FreeElevationSDK();
 ```
 
-### 2. List elevations
+### 2. List elevation records
 
 ```php
 try {
-    $result = $client->elevation()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Elevation records — iterate directly.
+    $elevations = $client->Elevation()->list();
+    foreach ($elevations as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->elevation()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Elevation record (throws on error).
+    $elevation = $client->Elevation()->load(["id" => "example_id"]);
+    print_r($elevation);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = FreeElevationSDK::test();
+$client = FreeElevationSDK::test([
+    "entity" => ["elevation" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->elevation()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$elevation = $client->Elevation()->load(["id" => "test01"]);
+print_r($elevation);
 ```
 
 ### Use a custom fetch function
@@ -182,7 +185,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Elevation` | `($data): ElevationEntity` | Create a Elevation entity instance. |
+| `Elevation` | `($data): ElevationEntity` | Create an Elevation entity instance. |
 
 ### Entity interface
 
@@ -241,7 +244,7 @@ API path: `/elevation`
 
 ### Elevation
 
-Create an instance: `const elevation = client.elevation`
+Create an instance: `$elevation = $client->Elevation();`
 
 #### Operations
 
@@ -260,14 +263,16 @@ Create an instance: `const elevation = client.elevation`
 
 #### Example: Load
 
-```ts
-const elevation = await client.elevation.load({ id: 'elevation_id' })
+```php
+// load() returns the bare Elevation record (throws on error).
+$elevation = $client->Elevation()->load(["id" => "elevation_id"]);
 ```
 
 #### Example: List
 
-```ts
-const elevations = await client.elevation.list()
+```php
+// list() returns an array of Elevation records (throws on error).
+$elevations = $client->Elevation()->list();
 ```
 
 
@@ -342,7 +347,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$elevation = $client->elevation();
+$elevation = $client->Elevation();
 $elevation->load(["id" => "example_id"]);
 
 // $elevation->dataGet() now returns the loaded elevation data

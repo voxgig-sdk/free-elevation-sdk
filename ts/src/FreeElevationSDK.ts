@@ -204,14 +204,7 @@ class FreeElevationSDK {
 
 
 
-  _elevation?: ElevationEntity
-
-  // Idiomatic facade: `client.elevation.list()` / `client.elevation.load({ id })`.
-  get elevation(): ElevationEntity {
-    return (this._elevation ??= new ElevationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.elevation` instead. */
+  // Entity access: `client.Elevation().list()` / `client.Elevation().load({ id })`.
   Elevation(data?: any) {
     const self = this
     return new ElevationEntity(self,data)

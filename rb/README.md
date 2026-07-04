@@ -28,16 +28,14 @@ require_relative "FreeElevation_sdk"
 client = FreeElevationSDK.new
 ```
 
-### 2. List elevations
+### 2. List elevation records
 
 ```ruby
 begin
-  result = client.elevation.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Elevation records — iterate directly.
+  elevations = client.Elevation.list
+  elevations.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.elevation.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Elevation record (raises on error).
+  elevation = client.Elevation.load({ "id" => "example_id" })
+  puts elevation
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = FreeElevationSDK.test
+client = FreeElevationSDK.test({
+  "entity" => { "elevation" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.elevation.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+elevation = client.Elevation.load({ "id" => "test01" })
+puts elevation
 ```
 
 ### Use a custom fetch function
@@ -178,7 +181,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Elevation` | `(data) -> ElevationEntity` | Create a Elevation entity instance. |
+| `Elevation` | `(data) -> ElevationEntity` | Create an Elevation entity instance. |
 
 ### Entity interface
 
@@ -236,7 +239,7 @@ API path: `/elevation`
 
 ### Elevation
 
-Create an instance: `const elevation = client.elevation`
+Create an instance: `elevation = client.Elevation`
 
 #### Operations
 
@@ -255,14 +258,16 @@ Create an instance: `const elevation = client.elevation`
 
 #### Example: Load
 
-```ts
-const elevation = await client.elevation.load({ id: 'elevation_id' })
+```ruby
+# load returns the bare Elevation record (raises on error).
+elevation = client.Elevation.load({ "id" => "elevation_id" })
 ```
 
 #### Example: List
 
-```ts
-const elevations = await client.elevation.list()
+```ruby
+# list returns an Array of Elevation records (raises on error).
+elevations = client.Elevation.list
 ```
 
 
@@ -337,7 +342,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-elevation = client.elevation
+elevation = client.Elevation
 elevation.load({ "id" => "example_id" })
 
 # elevation.data_get now returns the loaded elevation data

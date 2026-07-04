@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ElevationEntity
 
 ```python
-elevation = client.elevation
+elevation = client.Elevation()
 ```
 
 ### Fields
@@ -98,7 +98,9 @@ elevation = client.elevation
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.elevation.list({})
+results = client.Elevation().list({})
+for elevation in results:
+    print(elevation)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -106,7 +108,7 @@ results = client.elevation.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.elevation.load({"id": "elevation_id"})
+result = client.Elevation().load({"id": "elevation_id"})
 ```
 
 ### Common Methods

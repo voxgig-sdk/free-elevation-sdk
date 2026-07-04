@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ElevationEntity
 
 ```php
-$elevation = $client->elevation();
+$elevation = $client->Elevation();
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ $elevation = $client->elevation();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->elevation()->list([]);
+$results = $client->Elevation()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -111,7 +111,7 @@ $results = $client->elevation()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->elevation()->load(["id" => "elevation_id"]);
+$result = $client->Elevation()->load(["id" => "elevation_id"]);
 ```
 
 ### Common Methods

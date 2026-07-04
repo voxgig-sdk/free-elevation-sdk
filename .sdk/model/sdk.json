@@ -139,7 +139,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body.elevation`"
+                    "res": "`body`"
                   }
                 }
               ]

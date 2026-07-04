@@ -143,7 +143,7 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.elevation`",
+                  "res": "`body`",
                 },
                 "index$": 0,
               },

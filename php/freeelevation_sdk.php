@@ -233,10 +233,10 @@ class FreeElevationSDK
 
     private $_elevation = null;
 
-    // Idiomatic facade: $client->elevation()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Elevation() (PHP method
-    // names are case-insensitive).
-    public function elevation($data = null)
+    // Canonical facade: $client->Elevation()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->elevation()
+    // resolves here too.
+    public function Elevation($data = null)
     {
         require_once __DIR__ . '/entity/elevation_entity.php';
         if ($data === null) {

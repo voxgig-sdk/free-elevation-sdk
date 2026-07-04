@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## ElevationEntity
 
 ```ruby
-elevation = client.elevation
+elevation = client.Elevation
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ elevation = client.elevation
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.elevation.list(nil)
+results = client.Elevation.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -112,7 +112,7 @@ results = client.elevation.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.elevation.load({ "id" => "elevation_id" })
+result = client.Elevation.load({ "id" => "elevation_id" })
 ```
 
 ### Common Methods

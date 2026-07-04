@@ -26,9 +26,11 @@ import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
 
 const client = new FreeElevationSDK()
 
-// List all elevations
-const elevations = await client.elevation.list()
-console.log(elevations.data)
+// List all elevations (returns Elevation[])
+const elevations = await client.Elevation().list()
+for (const elevation of elevations) {
+  console.log(elevation)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,12 +85,13 @@ from freeelevation_sdk import FreeElevationSDK
 
 client = FreeElevationSDK()
 
-# List all elevations
-elevations = client.elevation.list()
-print(elevations)
+# List all elevations (returns a list, raises on error)
+elevations = client.Elevation().list({})
+for elevation in elevations:
+    print(elevation)
 
-# Load a specific elevation
-elevation = client.elevation.load({"id": "example_id"})
+# Load a specific elevation (returns the record, raises on error)
+elevation = client.Elevation().load({"id": "example_id"})
 print(elevation)
 ```
 
@@ -100,12 +103,12 @@ require_once 'freeelevation_sdk.php';
 
 $client = new FreeElevationSDK();
 
-// List all elevations (throws on error)
-$elevations = $client->elevation()->list();
+// List all elevations (returns an array; throws on error)
+$elevations = $client->Elevation()->list();
 print_r($elevations);
 
-// Load a specific elevation
-$elevation = $client->elevation()->load(["id" => "example_id"]);
+// Load a specific elevation (returns the bare record; throws on error)
+$elevation = $client->Elevation()->load(["id" => "example_id"]);
 print_r($elevation);
 ```
 
@@ -128,12 +131,12 @@ require_relative "FreeElevation_sdk"
 
 client = FreeElevationSDK.new
 
-# List all elevations
-elevations = client.elevation.list
+# List all elevations (returns an Array; raises on error)
+elevations = client.Elevation.list
 puts elevations
 
-# Load a specific elevation
-elevation = client.elevation.load({ "id" => "example_id" })
+# Load a specific elevation (returns the bare record; raises on error)
+elevation = client.Elevation.load({ "id" => "example_id" })
 puts elevation
 ```
 
@@ -145,11 +148,11 @@ local sdk = require("free-elevation_sdk")
 local client = sdk.new()
 
 -- List all elevations
-local elevations, err = client:elevation():list()
+local elevations, err = client:Elevation():list()
 print(elevations)
 
 -- Load a specific elevation
-local elevation, err = client:elevation():load({ id = "example_id" })
+local elevation, err = client:Elevation():load({ id = "example_id" })
 print(elevation)
 ```
 
@@ -162,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = FreeElevationSDK.test()
-const result = await client.elevation.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const elevation = await client.Elevation().load({ id: 'test01' })
+// elevation is a bare Elevation populated with mock data
+console.log(elevation)
 ```
 
 ### Python
 
 ```python
 client = FreeElevationSDK.test()
-result = client.elevation.load({"id": "test01"})
+elevation = client.Elevation().load({"id": "test01"})
+print(elevation)
 ```
 
 ### PHP
 
 ```php
-$client = FreeElevationSDK::test();
-$result = $client->elevation()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = FreeElevationSDK::test([
+    "entity" => ["elevation" => ["test01" => ["id" => "test01"]]],
+]);
+$elevation = $client->Elevation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,15 +200,18 @@ result, err := client.Elevation(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeElevationSDK.test
-result = client.elevation.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = FreeElevationSDK.test({
+  "entity" => { "elevation" => { "test01" => { "id" => "test01" } } },
+})
+elevation = client.Elevation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:elevation():load({ id = "test01" })
+local result, err = client:Elevation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -248,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

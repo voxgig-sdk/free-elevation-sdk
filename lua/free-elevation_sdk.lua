@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:elevation():list() / client:elevation():load({ id = ... })
-function FreeElevationSDK:elevation(data)
+-- Idiomatic facade: client:Elevation():list() / client:Elevation():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function FreeElevationSDK:Elevation(data)
   local EntityMod = require("entity.elevation_entity")
   if data == nil then
     if self._elevation == nil then
@@ -253,12 +254,6 @@ function FreeElevationSDK:elevation(data)
     end
     return self._elevation
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:elevation() instead.
-function FreeElevationSDK:Elevation(data)
-  local EntityMod = require("entity.elevation_entity")
   return EntityMod.new(self, data)
 end
 

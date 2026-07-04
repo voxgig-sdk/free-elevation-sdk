@@ -31,24 +31,28 @@ from freeelevation_sdk import FreeElevationSDK
 client = FreeElevationSDK()
 ```
 
-### 2. List elevations
+### 2. List elevation records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.elevation.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    elevations = client.Elevation().list({})
+    for elevation in elevations:
+        print(elevation)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load an elevation
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.elevation.load({"id": "example_id"})
-    print(result)
+    elevation = client.Elevation().load({"id": "example_id"})
+    print(elevation)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeElevationSDK.test()
 
-result = client.elevation.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+elevation = client.Elevation().load({"id": "test01"})
+# elevation contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -173,7 +178,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Elevation` | `(data) -> ElevationEntity` | Create a Elevation entity instance. |
+| `Elevation` | `(data) -> ElevationEntity` | Create an Elevation entity instance. |
 
 ### Entity interface
 
@@ -232,7 +237,7 @@ API path: `/elevation`
 
 ### Elevation
 
-Create an instance: `const elevation = client.elevation`
+Create an instance: `elevation = client.Elevation()`
 
 #### Operations
 
@@ -251,14 +256,14 @@ Create an instance: `const elevation = client.elevation`
 
 #### Example: Load
 
-```ts
-const elevation = await client.elevation.load({ id: 'elevation_id' })
+```python
+elevation = client.Elevation().load({"id": "elevation_id"})
 ```
 
 #### Example: List
 
-```ts
-const elevations = await client.elevation.list()
+```python
+elevations = client.Elevation().list({})
 ```
 
 
@@ -332,7 +337,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-elevation = client.elevation
+elevation = client.Elevation()
 elevation.load({"id": "example_id"})
 
 # elevation.data_get() now returns the loaded elevation data

@@ -148,7 +148,7 @@ class FreeElevationConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.elevation`',
+                    'res' => '`body`',
                   ],
                   'index$' => 0,
                 ],

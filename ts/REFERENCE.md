@@ -109,7 +109,7 @@ Alias for `FreeElevationSDK.test()`.
 ## ElevationEntity
 
 ```ts
-const elevation = client.elevation
+const elevation = client.Elevation()
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ const elevation = client.elevation
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.elevation.list()
+const results = await client.Elevation().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -135,7 +135,7 @@ const results = await client.elevation.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.elevation.load({ id: 'elevation_id' })
+const result = await client.Elevation().load({ id: 'elevation_id' })
 ```
 
 ### Common Methods

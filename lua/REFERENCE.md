@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## ElevationEntity
 
 ```lua
-local elevation = client:elevation(nil)
+local elevation = client:Elevation(nil)
 ```
 
 ### Fields
@@ -101,7 +101,7 @@ local elevation = client:elevation(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:elevation():list()
+local results, err = client:Elevation():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -109,7 +109,7 @@ local results, err = client:elevation():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:elevation():load({ id = "elevation_id" })
+local result, err = client:Elevation():load({ id = "elevation_id" })
 ```
 
 ### Common Methods

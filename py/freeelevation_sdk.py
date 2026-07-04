@@ -220,25 +220,15 @@ class FreeElevationSDK:
         }
 
 
-    @property
-    def elevation(self):
-        """Idiomatic facade: client.elevation.list() / client.elevation.load({"id": ...})."""
-        from entity.elevation_entity import ElevationEntity
-        cached = getattr(self, "_elevation", None)
-        if cached is None:
-            cached = ElevationEntity(self, None)
-            self._elevation = cached
-        return cached
-
-    def Elevation(self, data=None):
-        # Deprecated: use client.elevation instead.
+    def Elevation(self, data=None) -> "ElevationEntity":
+        """Entity factory: client.Elevation().list({}) / client.Elevation().load({"id": ...})."""
         from entity.elevation_entity import ElevationEntity
         return ElevationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "FreeElevationSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class FreeElevationSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.elevation_entity import ElevationEntity
