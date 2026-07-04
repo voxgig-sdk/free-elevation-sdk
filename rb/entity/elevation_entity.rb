@@ -45,6 +45,7 @@ class ElevationEntity
     end
   end
 
+  # @return [Elevation, Hash] the current Elevation data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ElevationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Elevation fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Elevation.
+  #
+  # @param reqmatch [ElevationLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Elevation, Hash] the loaded Elevation; raises FreeElevationError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class ElevationEntity
 
 
   
+  # List Elevation items matching the given filter.
+  #
+  # @param reqmatch [ElevationListMatch, Hash, nil] match filter (any subset of Elevation fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Elevation>, Array] the matching Elevation items; raises FreeElevationError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

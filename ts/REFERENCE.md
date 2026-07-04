@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `FreeElevationSDK.test()`.
 ## ElevationEntity
 
 ```ts
-const elevation = client.Elevation()
+const elevation = client.elevation
 ```
 
 ### Fields
@@ -128,7 +127,7 @@ const elevation = client.Elevation()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Elevation().list()
+const results = await client.elevation.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -136,7 +135,7 @@ const results = await client.Elevation().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Elevation().load({ id: 'elevation_id' })
+const result = await client.elevation.load({ id: 'elevation_id' })
 ```
 
 ### Common Methods

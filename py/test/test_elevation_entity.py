@@ -50,14 +50,12 @@ class TestElevationEntity:
         elevation_ref01_ent = client.Elevation(None)
         elevation_ref01_match = {}
 
-        elevation_ref01_list_result, err = elevation_ref01_ent.list(elevation_ref01_match, None)
-        assert err is None
+        elevation_ref01_list_result = elevation_ref01_ent.list(elevation_ref01_match, None)
         assert isinstance(elevation_ref01_list_result, list)
 
         # LOAD
         elevation_ref01_match_dt0 = {}
-        elevation_ref01_data_dt0_loaded, err = elevation_ref01_ent.load(elevation_ref01_match_dt0, None)
-        assert err is None
+        elevation_ref01_data_dt0_loaded = elevation_ref01_ent.load(elevation_ref01_match_dt0, None)
         assert elevation_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _elevation_basic_setup(extra):
         "FREEELEVATION_TEST_ELEVATION_ENTID": idmap,
         "FREEELEVATION_TEST_LIVE": "FALSE",
         "FREEELEVATION_TEST_EXPLAIN": "FALSE",
-        "FREEELEVATION_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _elevation_basic_setup(extra):
     if env.get("FREEELEVATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("FREEELEVATION_APIKEY"),
             },
             extra or {},
         ])

@@ -2,6 +2,8 @@
 
 import { ElevationEntity } from './entity/ElevationEntity'
 
+export type * from './FreeElevationTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class FreeElevationSDK {
 
 
 
+  _elevation?: ElevationEntity
+
+  // Idiomatic facade: `client.elevation.list()` / `client.elevation.load({ id })`.
+  get elevation(): ElevationEntity {
+    return (this._elevation ??= new ElevationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.elevation` instead. */
   Elevation(data?: any) {
     const self = this
     return new ElevationEntity(self,data)

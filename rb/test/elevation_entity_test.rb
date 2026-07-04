@@ -43,14 +43,12 @@ class ElevationEntityTest < Minitest::Test
     elevation_ref01_ent = client.Elevation(nil)
     elevation_ref01_match = {}
 
-    elevation_ref01_list_result, err = elevation_ref01_ent.list(elevation_ref01_match, nil)
-    assert_nil err
+    elevation_ref01_list_result = elevation_ref01_ent.list(elevation_ref01_match, nil)
     assert elevation_ref01_list_result.is_a?(Array)
 
     # LOAD
     elevation_ref01_match_dt0 = {}
-    elevation_ref01_data_dt0_loaded, err = elevation_ref01_ent.load(elevation_ref01_match_dt0, nil)
-    assert_nil err
+    elevation_ref01_data_dt0_loaded = elevation_ref01_ent.load(elevation_ref01_match_dt0, nil)
     assert !elevation_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def elevation_basic_setup(extra)
     "FREEELEVATION_TEST_ELEVATION_ENTID" => idmap,
     "FREEELEVATION_TEST_LIVE" => "FALSE",
     "FREEELEVATION_TEST_EXPLAIN" => "FALSE",
-    "FREEELEVATION_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def elevation_basic_setup(extra)
   if env["FREEELEVATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["FREEELEVATION_APIKEY"],
       },
       extra || {},
     ])

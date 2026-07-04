@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## ElevationEntity
 
 ```lua
-local elevation = client:Elevation(nil)
+local elevation = client:elevation(nil)
 ```
 
 ### Fields
@@ -102,7 +101,7 @@ local elevation = client:Elevation(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Elevation():list()
+local results, err = client:elevation():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -110,7 +109,7 @@ local results, err = client:Elevation():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Elevation():load({ id = "elevation_id" })
+local result, err = client:elevation():load({ id = "elevation_id" })
 ```
 
 ### Common Methods

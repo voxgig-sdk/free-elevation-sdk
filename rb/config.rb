@@ -15,9 +15,6 @@ module FreeElevationConfig
       },
       "options" => {
         "base" => "https://www.elevation-api.eu/v1",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -106,6 +103,7 @@ module FreeElevationConfig
                         "orig" => "lat",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -115,6 +113,7 @@ module FreeElevationConfig
                         "orig" => "lon",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
+                        "index$" => 1,
                       },
                     ],
                     "query" => [

@@ -9,9 +9,12 @@ The TypeScript SDK for the FreeElevation API — a type-safe, entity-oriented cl
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/free-elevation
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/free-elevation-sdk/releases](https://github.com/voxgig-sdk/free-elevation-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeElevationSDK } from 'free-elevation'
+import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
 
-const client = new FreeElevationSDK({
-  apikey: process.env.FREE-ELEVATION_APIKEY,
-})
+const client = new FreeElevationSDK()
 ```
 
 ### 2. List elevations
 
 ```ts
-const result = await client.Elevation().list()
+const result = await client.elevation.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -39,10 +40,10 @@ if (result.ok) {
 }
 ```
 
-### 3. Load a elevation
+### 3. Load an elevation
 
 ```ts
-const result = await client.Elevation().load({ id: 'example_id' })
+const result = await client.elevation.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = FreeElevationSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.elevation.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new FreeElevationSDK({ apikey: '...' })
+const client = new FreeElevationSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.elevation
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new FreeElevationSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -145,8 +145,7 @@ const client = new FreeElevationSDK({
 Create a `.env.local` file at the project root:
 
 ```
-FREE-ELEVATION_TEST_LIVE=TRUE
-FREE-ELEVATION_APIKEY=<your-key>
+FREE_ELEVATION_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new FreeElevationSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new FreeElevationSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -280,7 +277,7 @@ API path: `/elevation`
 
 ### Elevation
 
-Create an instance: `const elevation = client.Elevation()`
+Create an instance: `const elevation = client.elevation`
 
 #### Operations
 
@@ -300,13 +297,13 @@ Create an instance: `const elevation = client.Elevation()`
 #### Example: Load
 
 ```ts
-const elevation = await client.Elevation().load({ id: 'elevation_id' })
+const elevation = await client.elevation.load({ id: 'elevation_id' })
 ```
 
 #### Example: List
 
 ```ts
-const elevations = await client.Elevation().list()
+const elevations = await client.elevation.list()
 ```
 
 
@@ -367,7 +364,7 @@ free-elevation/
 Import the SDK from the package root:
 
 ```ts
-import { FreeElevationSDK } from 'free-elevation'
+import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
 ```
 
 ### Entity state
@@ -377,11 +374,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const elevation = client.elevation
+await elevation.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// elevation.data() now returns the loaded elevation data
+// elevation.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

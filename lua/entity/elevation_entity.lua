@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ElevationLoadMatch
+---@param ctrl? table
+---@return Elevation
+---@return string? err
 function ElevationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ElevationListMatch
+---@param ctrl? table
+---@return Elevation[]
+---@return string? err
 function ElevationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

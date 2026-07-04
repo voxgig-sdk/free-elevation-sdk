@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://www.elevation-api.eu/v1",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -106,6 +103,7 @@ def make_config():
                       "orig": "lat",
                       "reqd": True,
                       "type": "`$NUMBER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -115,6 +113,7 @@ def make_config():
                       "orig": "lon",
                       "reqd": True,
                       "type": "`$NUMBER`",
+                      "index$": 1,
                     },
                   ],
                   "query": [

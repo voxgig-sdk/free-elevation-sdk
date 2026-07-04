@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://www.elevation-api.eu/v1",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -105,6 +102,7 @@ local function make_config()
                       ["orig"] = "lat",
                       ["reqd"] = true,
                       ["type"] = "`$NUMBER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -114,6 +112,7 @@ local function make_config()
                       ["orig"] = "lon",
                       ["reqd"] = true,
                       ["type"] = "`$NUMBER`",
+                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {

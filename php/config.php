@@ -20,9 +20,6 @@ class FreeElevationConfig
             ],
             "options" => [
                 "base" => "https://www.elevation-api.eu/v1",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -111,6 +108,7 @@ class FreeElevationConfig
                         'orig' => 'lat',
                         'reqd' => true,
                         'type' => '`$NUMBER`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -120,6 +118,7 @@ class FreeElevationConfig
                         'orig' => 'lon',
                         'reqd' => true,
                         'type' => '`$NUMBER`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [

@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://www.elevation-api.eu/v1',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -135,7 +131,8 @@ class Config {
                     "name": "lat",
                     "orig": "lat",
                     "reqd": true,
-                    "type": "`$NUMBER`"
+                    "type": "`$NUMBER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -144,7 +141,8 @@ class Config {
                     "name": "lon",
                     "orig": "lon",
                     "reqd": true,
-                    "type": "`$NUMBER`"
+                    "type": "`$NUMBER`",
+                    "index$": 1
                   }
                 ],
                 "query": [

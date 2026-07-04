@@ -245,6 +245,9 @@ func (sdk *FreeElevationSDK) Direct(fetchargs map[string]any) (map[string]any, e
 }
 
 
+// Elevation returns a Elevation entity bound to this client.
+// Idiomatic usage: client.Elevation(nil).List(nil, nil) or
+// client.Elevation(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *FreeElevationSDK) Elevation(data map[string]any) FreeElevationEntity {
 	return NewElevationEntityFunc(sdk, data)
 }

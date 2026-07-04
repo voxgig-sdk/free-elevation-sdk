@@ -85,6 +85,27 @@ func (e *ElevationEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Elevation; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ElevationEntity) DataTyped(data ...Elevation) Elevation {
+	if len(data) > 0 {
+		return typedFrom[Elevation](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Elevation](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Elevation (all fields
+// optional at the wire level).
+func (e *ElevationEntity) MatchTyped(match ...Elevation) Elevation {
+	if len(match) > 0 {
+		return typedFrom[Elevation](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Elevation](e.Match())
+}
+
 
 func (e *ElevationEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *ElevationEntity) Load(reqmatch map[string]any, ctrl map[string]any) (an
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ElevationLoadMatch and returns an Elevation. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ElevationEntity) LoadTyped(reqmatch ElevationLoadMatch, ctrl map[string]any) (Elevation, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Elevation{}, err
+	}
+	return typedFrom[Elevation](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *ElevationEntity) List(reqmatch map[string]any, ctrl map[string]any) (an
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// ElevationListMatch and returns []Elevation. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *ElevationEntity) ListTyped(reqmatch ElevationListMatch, ctrl map[string]any) ([]Elevation, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Elevation](res), nil
 }
 
 

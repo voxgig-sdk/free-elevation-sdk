@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Elevation,
+  ElevationLoadMatch,
+  ElevationListMatch,
+} from '../FreeElevationTypes'
 
 // TODO: needs Entity superclass
-class ElevationEntity extends FreeElevationEntityBase {
+class ElevationEntity extends FreeElevationEntityBase<Elevation> {
 
   constructor(client: FreeElevationSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ElevationEntity extends FreeElevationEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ElevationLoadMatch, ctrl?: Control): Promise<Elevation> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class ElevationEntity extends FreeElevationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Elevation> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ElevationListMatch, ctrl?: Control): Promise<Elevation[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class ElevationEntity extends FreeElevationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Elevation[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
