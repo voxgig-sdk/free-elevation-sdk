@@ -16,5 +16,9 @@ export interface ElevationLoadMatch {
   lon: number
 }
 
-export type ElevationListMatch = Partial<Elevation>
+export interface ElevationListMatch {
+  elevation?: number
+  latitude?: number
+  longitude?: number
+}
 

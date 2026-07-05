@@ -8,7 +8,7 @@ Complete API reference for the FreeElevation Python SDK.
 ### Constructor
 
 ```python
-from free-elevation_sdk import FreeElevationSDK
+from freeelevation_sdk import FreeElevationSDK
 
 client = FreeElevationSDK(options)
 ```
@@ -87,18 +87,18 @@ elevation = client.Elevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `float` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Elevation().list({})
+results = client.Elevation().list()
 for elevation in results:
     print(elevation)
 ```
@@ -108,7 +108,7 @@ for elevation in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Elevation().load({"id": "elevation_id"})
+result = client.Elevation().load()
 ```
 
 ### Common Methods

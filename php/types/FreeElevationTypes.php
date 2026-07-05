@@ -27,7 +27,7 @@ class ElevationLoadMatch
     public float $lon;
 }
 
-/** Match filter for Elevation#list (any subset of Elevation fields). */
+/** Request payload for Elevation#list. */
 class ElevationListMatch
 {
     public ?float $elevation = null;

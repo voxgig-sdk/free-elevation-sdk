@@ -21,8 +21,7 @@ type ElevationLoadMatch struct {
 	Lon float64 `json:"lon"`
 }
 
-// ElevationListMatch mirrors the elevation fields as an all-optional match
-// filter (Go analog of Partial<Elevation>).
+// ElevationListMatch is the typed request payload for Elevation.ListTyped.
 type ElevationListMatch struct {
 	Elevation *float64 `json:"elevation,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`

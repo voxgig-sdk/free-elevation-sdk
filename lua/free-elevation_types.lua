@@ -16,6 +16,9 @@
 ---@field lon number
 
 ---@class ElevationListMatch
+---@field elevation? number
+---@field latitude? number
+---@field longitude? number
 
 local M = {}
 

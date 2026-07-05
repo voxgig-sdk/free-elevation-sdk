@@ -221,7 +221,7 @@ class FreeElevationSDK:
 
 
     def Elevation(self, data=None) -> "ElevationEntity":
-        """Entity factory: client.Elevation().list({}) / client.Elevation().load({"id": ...})."""
+        """Entity factory: client.Elevation().list() / client.Elevation().load({"id": ...})."""
         from entity.elevation_entity import ElevationEntity
         return ElevationEntity(self, data)
 

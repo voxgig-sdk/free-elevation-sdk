@@ -65,8 +65,13 @@ class ElevationEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: ElevationLoadMatch, ctrl=None) -> Elevation:
+    def load(self, reqmatch=None, ctrl=None) -> Elevation:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Elevation().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class ElevationEntity:
 
 
     
-    def list(self, reqmatch: ElevationListMatch, ctrl=None) -> list[Elevation]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Elevation]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Elevation().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

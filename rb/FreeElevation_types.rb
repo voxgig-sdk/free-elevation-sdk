@@ -38,7 +38,7 @@ ElevationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Elevation#list (any subset of Elevation fields).
+# Request payload for Elevation#list.
 #
 # @!attribute [rw] elevation
 #   @return [Float, nil]

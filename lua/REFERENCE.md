@@ -90,9 +90,9 @@ local elevation = client:Elevation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
 
 ### Operations
 
@@ -109,7 +109,7 @@ local results, err = client:Elevation():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Elevation():load({ id = "elevation_id" })
+local result, err = client:Elevation():load()
 ```
 
 ### Common Methods

@@ -116,9 +116,9 @@ const elevation = client.Elevation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
 
 ### Operations
 
@@ -135,7 +135,7 @@ const results = await client.Elevation().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Elevation().load({ id: 'elevation_id' })
+const result = await client.Elevation().load()
 ```
 
 ### Common Methods

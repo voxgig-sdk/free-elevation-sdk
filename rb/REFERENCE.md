@@ -8,7 +8,7 @@ Complete API reference for the FreeElevation Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'free-elevation_sdk'
+require_relative 'FreeElevation_sdk'
 
 client = FreeElevationSDK.new(options)
 ```
@@ -93,18 +93,18 @@ elevation = client.Elevation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `Float` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Elevation.list(nil)
+results = client.Elevation.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -112,7 +112,7 @@ results = client.Elevation.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Elevation.load({ "id" => "elevation_id" })
+result = client.Elevation.load()
 ```
 
 ### Common Methods

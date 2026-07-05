@@ -97,9 +97,9 @@ elevation := client.Elevation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `float64` | No |  |
+| `latitude` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
 
 ### Operations
 
@@ -116,7 +116,7 @@ results, err := client.Elevation(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Elevation(nil).Load(map[string]any{"id": "elevation_id"}, nil)
+result, err := client.Elevation(nil).Load(nil, nil)
 ```
 
 ### Common Methods

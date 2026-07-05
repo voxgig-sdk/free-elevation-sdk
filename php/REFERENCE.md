@@ -8,7 +8,7 @@ Complete API reference for the FreeElevation PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/free-elevation_sdk.php';
+require_once __DIR__ . '/freeelevation_sdk.php';
 
 $client = new FreeElevationSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = FreeElevationSDK::test();
 
 Create a new `ElevationEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): FreeElevationUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,18 +92,18 @@ $elevation = $client->Elevation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | ``$NUMBER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
+| `elevation` | `float` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Elevation()->list([]);
+$results = $client->Elevation()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -111,24 +111,24 @@ $results = $client->Elevation()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Elevation()->load(["id" => "elevation_id"]);
+$result = $client->Elevation()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -137,7 +137,7 @@ Set the entity match criteria.
 Create a new `ElevationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
