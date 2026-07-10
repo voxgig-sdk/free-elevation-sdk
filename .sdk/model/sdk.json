@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -304,14 +301,17 @@
           "email": "f@vi-di.fr"
         },
         "description": "This API provides access to elevation data for any point on Earth without any cost. Users can retrieve elevation information by making GET requests with latitude and longitude parameters. The digital elevation data comes from ESA's Copernicus program.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://www.elevation-api.eu/v1"
           }
         ],
+        "summary": "This API provides access to elevation data for any point on Earth without any cost.",
         "title": "Free Elevation API",
         "version": "1.0.0",
+        "website": "https://elevation-api.eu",
         "x-documentation": "https://www.elevation-api.eu/"
       },
       "option": {},
@@ -365,6 +365,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -415,6 +418,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

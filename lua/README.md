@@ -49,8 +49,10 @@ end
 
 ### 3. Load an elevation
 
+Elevation is nested under lat, so provide the `lat`.
+
 ```lua
-local elevation, err = client:Elevation():load()
+local elevation, err = client:Elevation():load({ lat = 1, lon = 1 })
 if err then error(err) end
 print(elevation)
 ```
@@ -276,7 +278,7 @@ Create an instance: `local elevation = client:Elevation(nil)`
 #### Example: Load
 
 ```lua
-local elevation, err = client:Elevation():load()
+local elevation, err = client:Elevation():load({ lat = 1, lon = 1 })
 ```
 
 #### Example: List

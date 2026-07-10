@@ -52,11 +52,12 @@ except Exception as err:
 
 ### 3. Load an elevation
 
+Elevation is nested under lat, so provide the `lat`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    elevation = client.Elevation().load()
+    elevation = client.Elevation().load({"lat": 1, "lon": 1})
     print(elevation)
 except Exception as err:
     print(f"load failed: {err}")
@@ -290,7 +291,7 @@ Create an instance: `elevation = client.Elevation()`
 #### Example: Load
 
 ```python
-elevation = client.Elevation().load()
+elevation = client.Elevation().load({"lat": 1, "lon": 1})
 ```
 
 #### Example: List

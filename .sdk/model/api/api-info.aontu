@@ -15,10 +15,10 @@ main: {
           url: "https://www.elevation-api.eu/v1"
         }
       ]
+      summary: "This API provides access to elevation data for any point on Earth without any cost."
       title: "Free Elevation API"
       version: "1.0.0"
+      website: "https://elevation-api.eu"
       "x-documentation": "https://www.elevation-api.eu/"
     }
   }
-}
-

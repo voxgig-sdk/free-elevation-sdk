@@ -135,7 +135,7 @@ const results = await client.Elevation().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Elevation().load()
+const result = await client.Elevation().load({ lat: 1, lon: 1 })
 ```
 
 ### Common Methods

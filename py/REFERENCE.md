@@ -108,7 +108,7 @@ for elevation in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Elevation().load()
+result = client.Elevation().load({"lat": 1, "lon": 1})
 ```
 
 ### Common Methods

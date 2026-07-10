@@ -46,10 +46,12 @@ end
 
 ### 3. Load an elevation
 
+Elevation is nested under lat, so provide the `lat`.
+
 ```ruby
 begin
   # load returns the bare Elevation record (raises on error).
-  elevation = client.Elevation.load()
+  elevation = client.Elevation.load({ "lat" => 1, "lon" => 1 })
   puts elevation
 rescue => err
   warn "load failed: #{err}"
@@ -285,7 +287,7 @@ Create an instance: `elevation = client.Elevation`
 
 ```ruby
 # load returns the bare Elevation record (raises on error).
-elevation = client.Elevation.load()
+elevation = client.Elevation.load({ "lat" => 1, "lon" => 1 })
 ```
 
 #### Example: List

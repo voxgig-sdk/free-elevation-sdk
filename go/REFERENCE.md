@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 elevation := client.Elevation(nil)
+fmt.Println(elevation.GetName()) // "elevation"
 ```
 
 ### Fields
@@ -109,6 +110,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Elevation(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -116,7 +121,11 @@ results, err := client.Elevation(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Elevation(nil).Load(nil, nil)
+result, err := client.Elevation(nil).Load(map[string]any{"lat": 1, "lon": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

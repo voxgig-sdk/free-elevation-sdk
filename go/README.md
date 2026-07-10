@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single elevation — the value is the loaded record.
-    elevation, err := client.Elevation(nil).Load(nil, nil)
+    elevation, err := client.Elevation(nil).Load(map[string]any{"lat": 1, "lon": 1}, nil)
     if err != nil {
         panic(err)
     }
@@ -304,7 +304,7 @@ Create an instance: `elevation := client.Elevation(nil)`
 #### Example: Load
 
 ```go
-elevation, err := client.Elevation(nil).Load(nil, nil)
+elevation, err := client.Elevation(nil).Load(map[string]any{"lat": 1, "lon": 1}, nil)
 if err != nil {
     panic(err)
 }

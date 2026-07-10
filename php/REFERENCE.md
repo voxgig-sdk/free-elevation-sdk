@@ -111,7 +111,7 @@ $results = $client->Elevation()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Elevation()->load();
+$result = $client->Elevation()->load(["lat" => 1, "lon" => 1]);
 ```
 
 ### Common Methods

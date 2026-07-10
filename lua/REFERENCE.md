@@ -109,7 +109,7 @@ local results, err = client:Elevation():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Elevation():load()
+local result, err = client:Elevation():load({ lat = 1, lon = 1 })
 ```
 
 ### Common Methods

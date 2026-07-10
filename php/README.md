@@ -47,10 +47,12 @@ try {
 
 ### 3. Load an elevation
 
+Elevation is nested under lat, so provide the `lat`.
+
 ```php
 try {
     // load() returns the bare Elevation record (throws on error).
-    $elevation = $client->Elevation()->load();
+    $elevation = $client->Elevation()->load(["lat" => 1, "lon" => 1]);
     print_r($elevation);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -295,7 +297,7 @@ Create an instance: `$elevation = $client->Elevation();`
 
 ```php
 // load() returns the bare Elevation record (throws on error).
-$elevation = $client->Elevation()->load();
+$elevation = $client->Elevation()->load(["lat" => 1, "lon" => 1]);
 ```
 
 #### Example: List

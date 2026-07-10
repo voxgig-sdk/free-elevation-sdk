@@ -112,7 +112,7 @@ results = client.Elevation.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Elevation.load()
+result = client.Elevation.load({ "lat" => 1, "lon" => 1 })
 ```
 
 ### Common Methods

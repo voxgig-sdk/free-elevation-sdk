@@ -47,11 +47,15 @@ for (const elevation of elevations) {
 
 ### 3. Load an elevation
 
+Elevation is nested under lat, so provide the `lat`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const elevation = await client.Elevation().load()
+  const elevation = await client.Elevation().load({
+    lat: 1,
+    lon: 1,
+  })
   console.log(elevation)
 } catch (err) {
   console.error('load failed:', err)
@@ -334,7 +338,7 @@ Create an instance: `const elevation = client.Elevation()`
 #### Example: Load
 
 ```ts
-const elevation = await client.Elevation().load()
+const elevation = await client.Elevation().load({ lat: 1, lon: 1 })
 ```
 
 #### Example: List
