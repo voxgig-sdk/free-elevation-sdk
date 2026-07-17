@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- FreeElevation SDK configuration
 
 local function make_config()
   return {
