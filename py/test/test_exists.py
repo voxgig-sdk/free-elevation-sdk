@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# FreeElevation SDK exists test
 
 import pytest
 from freeelevation_sdk import FreeElevationSDK

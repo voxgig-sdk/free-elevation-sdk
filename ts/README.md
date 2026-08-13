@@ -35,7 +35,9 @@ const client = new FreeElevationSDK()
 
 ### 2. List elevation records
 
-`list()` resolves to an array of Elevation objects — iterate it directly:
+`list()` resolves to an array of Elevation ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const elevations = await client.Elevation().list()
@@ -137,7 +139,8 @@ Create a mock client for unit testing — no server required:
 const client = FreeElevationSDK.test()
 
 const elevation = await client.Elevation().list()
-// elevation is a bare entity populated with mock response data
+// elevation is the entity, populated with mock response data
+// — call elevation.data() for the record itself
 console.log(elevation)
 ```
 

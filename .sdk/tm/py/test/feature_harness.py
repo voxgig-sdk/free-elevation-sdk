@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import FreeElevationControl
-from core.error import FreeElevationError
-from core.result import FreeElevationResult
-from core.spec import FreeElevationSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import FreeElevationControl
+from projectname_sdk.core.error import FreeElevationError
+from projectname_sdk.core.result import FreeElevationResult
+from projectname_sdk.core.spec import FreeElevationSpec
 
 
 # True when this SDK was generated with the named feature.

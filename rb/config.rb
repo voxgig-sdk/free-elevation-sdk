@@ -68,6 +68,7 @@ module FreeElevationConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/elevation",
                   "parts" => [
@@ -127,6 +128,7 @@ module FreeElevationConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/elevation/{lat}/{lon}",
                   "parts" => [

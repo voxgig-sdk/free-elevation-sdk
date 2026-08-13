@@ -121,11 +121,11 @@ function elevation_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "FREEELEVATION_TEST_ELEVATION_ENTID" => [],
-        "FREEELEVATION_TEST_LIVE" => "FALSE",
+        "FREE_ELEVATION_TEST_ELEVATION_ENTID" => [],
+        "FREE_ELEVATION_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["FREEELEVATION_TEST_LIVE"] === "TRUE";
+    $live = $env["FREE_ELEVATION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

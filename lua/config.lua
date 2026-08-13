@@ -67,6 +67,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/elevation",
                 ["parts"] = {
@@ -126,6 +127,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/elevation/{lat}/{lon}",
                 ["parts"] = {

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from freeelevation_sdk.utility.voxgig_struct import voxgig_struct as vs
 from freeelevation_sdk import FreeElevationSDK
-from core import helpers
+from freeelevation_sdk.core import helpers
 from test import runner
 
 
@@ -104,11 +104,11 @@ def _elevation_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "FREEELEVATION_TEST_ELEVATION_ENTID": {},
-        "FREEELEVATION_TEST_LIVE": "FALSE",
+        "FREE_ELEVATION_TEST_ELEVATION_ENTID": {},
+        "FREE_ELEVATION_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("FREEELEVATION_TEST_LIVE") == "TRUE"
+    live = env.get("FREE_ELEVATION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

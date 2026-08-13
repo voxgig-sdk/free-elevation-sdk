@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import FreeElevationSDK
-from core.error import FreeElevationError
-from core.result import FreeElevationResult
-from core.response import FreeElevationResponse
-from core.spec import FreeElevationSpec
-from feature.base_feature import FreeElevationBaseFeature
+from projectname_sdk.core.error import FreeElevationError
+from projectname_sdk.core.result import FreeElevationResult
+from projectname_sdk.core.response import FreeElevationResponse
+from projectname_sdk.core.spec import FreeElevationSpec
+from projectname_sdk.feature.base_feature import FreeElevationBaseFeature
 
 
 def _client():

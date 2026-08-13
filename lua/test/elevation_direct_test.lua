@@ -115,11 +115,11 @@ function elevation_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["FREEELEVATION_TEST_ELEVATION_ENTID"] = {},
-    ["FREEELEVATION_TEST_LIVE"] = "FALSE",
+    ["FREE_ELEVATION_TEST_ELEVATION_ENTID"] = {},
+    ["FREE_ELEVATION_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["FREEELEVATION_TEST_LIVE"] == "TRUE"
+  local live = env["FREE_ELEVATION_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

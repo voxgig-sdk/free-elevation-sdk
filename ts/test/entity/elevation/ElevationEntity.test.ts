@@ -26,8 +26,8 @@ import {
 describe('ElevationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when FREEELEVATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('FREEELEVATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when FREE_ELEVATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('FREE_ELEVATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = FreeElevationSDK.test()
@@ -63,7 +63,7 @@ describe('ElevationEntity', async () => {
     const elevation_ref01_ent = client.Elevation()
     const elevation_ref01_match: any = {}
 
-    const elevation_ref01_list = await elevation_ref01_ent.list(elevation_ref01_match)
+    const elevation_ref01_list = (await elevation_ref01_ent.list(elevation_ref01_match)).map((e: any) => e.data())
 
 
 

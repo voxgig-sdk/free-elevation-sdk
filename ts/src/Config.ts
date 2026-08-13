@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'FreeElevation',
   }
 
 
@@ -97,6 +97,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/elevation",
               "parts": [
@@ -156,6 +157,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/elevation/{lat}/{lon}",
               "parts": [

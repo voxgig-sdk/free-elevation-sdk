@@ -50,7 +50,7 @@ Elevation is nested under lat, so provide the `lat`.
 
 ```ruby
 begin
-  # load returns the bare Elevation record (raises on error).
+  # load returns the ENTITY — call data_get for the Elevation record (raises on error).
   elevation = client.Elevation.load({ "lat" => 1, "lon" => 1 })
   puts elevation
 rescue => err
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeElevationSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 elevation = client.Elevation.list()
 puts elevation
 ```
@@ -286,7 +287,7 @@ Create an instance: `elevation = client.Elevation`
 #### Example: Load
 
 ```ruby
-# load returns the bare Elevation record (raises on error).
+# load returns the ENTITY — call data_get for the Elevation record (raises on error).
 elevation = client.Elevation.load({ "lat" => 1, "lon" => 1 })
 ```
 

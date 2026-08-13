@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ FreeElevationUtility::setRegistrar(function (FreeElevationUtility $u): void {
     $u->prepare_params = [FreeElevationPrepareParams::class, 'call'];
     $u->prepare_path = [FreeElevationPreparePath::class, 'call'];
     $u->prepare_query = [FreeElevationPrepareQuery::class, 'call'];
+    $u->graphql_body = [FreeElevationGraphql::class, 'body'];
+    $u->graphql_errors = [FreeElevationGraphql::class, 'errors'];
     $u->result_basic = [FreeElevationResultBasic::class, 'call'];
     $u->result_body = [FreeElevationResultBody::class, 'call'];
     $u->result_headers = [FreeElevationResultHeaders::class, 'call'];

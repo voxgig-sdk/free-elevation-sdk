@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = FreeElevationSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = FreeElevationSDK.test({
+  entity: {
+    elevation: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const elevations = await client.Elevation().list()
-// elevations is an array of bare Elevation records populated with mock data
+// elevations is an array of Elevation entities, populated with mock data
+// — call elevations[0].data() for the record itself
 console.log(elevations)
 ```
 
@@ -110,7 +119,7 @@ import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
 
 const client = new FreeElevationSDK()
 
-// List all elevations (returns Elevation[])
+// List all elevations (returns ElevationEntity[] — .data() for the record)
 const elevations = await client.Elevation().list()
 for (const elevation of elevations) {
   console.log(elevation)
@@ -198,7 +207,7 @@ $client = new FreeElevationSDK();
 $elevations = $client->Elevation()->list();
 print_r($elevations);
 
-// Load a specific elevation (returns the bare record; throws on error)
+// Load a specific elevation (returns the ENTITY; call data_get() for the record; throws on error)
 $elevation = $client->Elevation()->load(["lat" => 1, "lon" => 1]);
 print_r($elevation);
 ```
@@ -238,7 +247,7 @@ client = FreeElevationSDK.new
 elevations = client.Elevation.list
 puts elevations
 
-# Load a specific elevation (returns the bare record; raises on error)
+# Load a specific elevation (returns the ENTITY; call data_get for the record)
 elevation = client.Elevation.load({ "lat" => 1, "lon" => 1 })
 puts elevation
 ```
@@ -375,6 +384,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.elevation-api.eu/v1](https://www.elevation-api.eu/v1)
 

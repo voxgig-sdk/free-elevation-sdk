@@ -73,6 +73,7 @@ class FreeElevationConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/elevation',
                   'parts' => [
@@ -132,6 +133,7 @@ class FreeElevationConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/elevation/{lat}/{lon}',
                   'parts' => [
