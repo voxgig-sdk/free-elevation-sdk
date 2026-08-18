@@ -15,7 +15,7 @@ require_relative "../FreeElevation_sdk"
 module FreeElevationFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = FreeElevationConfig.make_config["feature"]
+    f = FreeElevationConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

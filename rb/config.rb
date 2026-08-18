@@ -1,6 +1,20 @@
 # FreeElevation SDK configuration
 
 module FreeElevationConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -26,25 +40,16 @@ module FreeElevationConfig
         "elevation" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "elevation",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "latitude",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "longitude",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 2,
             },
           ],
           "name" => "elevation",
@@ -54,11 +59,9 @@ module FreeElevationConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "[[46.24566,6.17081],[46.85499,6.78134]]",
                         "kind" => "query",
                         "name" => "pts",
@@ -83,47 +86,38 @@ module FreeElevationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 46.24566,
                         "kind" => "param",
                         "name" => "lat",
                         "orig" => "lat",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => 6.17081,
                         "kind" => "param",
                         "name" => "lon",
                         "orig" => "lon",
                         "reqd" => true,
                         "type" => "`$NUMBER`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "json",
                         "orig" => "json",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -147,10 +141,8 @@ module FreeElevationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

@@ -28,7 +28,7 @@ class FreeElevationSDK
     utility = FreeElevationUtility.new
     @_utility = utility
 
-    config = FreeElevationConfig.make_config
+    config = FreeElevationConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

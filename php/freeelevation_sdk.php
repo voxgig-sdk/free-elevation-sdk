@@ -40,7 +40,7 @@ class FreeElevationSDK
         $utility = new FreeElevationUtility();
         $this->_utility = $utility;
 
-        $config = FreeElevationConfig::make_config();
+        $config = FreeElevationConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -1,5 +1,8 @@
 -- FreeElevation SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -25,25 +28,16 @@ local function make_config()
       ["elevation"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "elevation",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "latitude",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "longitude",
-            ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 2,
           },
         },
         ["name"] = "elevation",
@@ -53,11 +47,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "[[46.24566,6.17081],[46.85499,6.78134]]",
                       ["kind"] = "query",
                       ["name"] = "pts",
@@ -82,47 +74,38 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 46.24566,
                       ["kind"] = "param",
                       ["name"] = "lat",
                       ["orig"] = "lat",
                       ["reqd"] = true,
                       ["type"] = "`$NUMBER`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 6.17081,
                       ["kind"] = "param",
                       ["name"] = "lon",
                       ["orig"] = "lon",
                       ["reqd"] = true,
                       ["type"] = "`$NUMBER`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "json",
                       ["orig"] = "json",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                   },
@@ -146,10 +129,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
