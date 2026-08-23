@@ -262,9 +262,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `elevation` |  |
-| `latitude` |  |
-| `longitude` |  |
+| `elevation` | Elevation in meters |
+| `latitude` | Latitude of the point |
+| `longitude` | Longitude of the point |
 
 Operations: List, Load.
 
@@ -290,9 +290,9 @@ Create an instance: `$elevation = $client->Elevation();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `elevation` | `float` |  |
-| `latitude` | `float` |  |
-| `longitude` | `float` |  |
+| `elevation` | `float` | Elevation in meters |
+| `latitude` | `float` | Latitude of the point |
+| `longitude` | `float` | Longitude of the point |
 
 #### Example: Load
 

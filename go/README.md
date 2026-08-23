@@ -6,7 +6,7 @@ The Golang SDK for the FreeElevation API — an entity-oriented client using sta
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Elevation(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -269,9 +269,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"elevation"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
+| `"elevation"` | Elevation in meters |
+| `"latitude"` | Latitude of the point |
+| `"longitude"` | Longitude of the point |
 
 Operations: List, Load.
 
@@ -297,9 +297,9 @@ Create an instance: `elevation := client.Elevation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `elevation` | `float64` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
+| `elevation` | `float64` | Elevation in meters |
+| `latitude` | `float64` | Latitude of the point |
+| `longitude` | `float64` | Longitude of the point |
 
 #### Example: Load
 

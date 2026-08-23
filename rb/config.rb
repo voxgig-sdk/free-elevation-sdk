@@ -19,6 +19,9 @@ module FreeElevationConfig
     {
       "main" => {
         "name" => "FreeElevation",
+        "slug" => "free-elevation",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -41,14 +44,17 @@ module FreeElevationConfig
           "fields" => [
             {
               "name" => "elevation",
+              "short" => "Elevation in meters",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "latitude",
+              "short" => "Latitude of the point",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "longitude",
+              "short" => "Longitude of the point",
               "type" => "`$NUMBER`",
             },
           ],

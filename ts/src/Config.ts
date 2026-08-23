@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'FreeElevation',
+        slug: "free-elevation",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -56,14 +67,17 @@ class Config {
       "fields": [
         {
           "name": "elevation",
+          "short": "Elevation in meters",
           "type": "`$NUMBER`"
         },
         {
           "name": "latitude",
+          "short": "Latitude of the point",
           "type": "`$NUMBER`"
         },
         {
           "name": "longitude",
+          "short": "Longitude of the point",
           "type": "`$NUMBER`"
         }
       ],

@@ -8,16 +8,19 @@ main: kit: entity: elevation: {
     {
       name: "elevation"
       req: false
+      short: "Elevation in meters"
       type: "`$NUMBER`"
     }
     {
       name: "latitude"
       req: false
+      short: "Latitude of the point"
       type: "`$NUMBER`"
     }
     {
       name: "longitude"
       req: false
+      short: "Longitude of the point"
       type: "`$NUMBER`"
     }
   ]

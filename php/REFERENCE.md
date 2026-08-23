@@ -92,9 +92,9 @@ $elevation = $client->Elevation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | `float` | No |  |
-| `latitude` | `float` | No |  |
-| `longitude` | `float` | No |  |
+| `elevation` | `float` | No | Elevation in meters |
+| `latitude` | `float` | No | Latitude of the point |
+| `longitude` | `float` | No | Longitude of the point |
 
 ### Operations
 

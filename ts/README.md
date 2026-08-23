@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -306,9 +306,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `elevation` |  |
-| `latitude` |  |
-| `longitude` |  |
+| `elevation` | Elevation in meters |
+| `latitude` | Latitude of the point |
+| `longitude` | Longitude of the point |
 
 Operations: list, load.
 
@@ -334,9 +334,9 @@ Create an instance: `const elevation = client.Elevation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `elevation` | `number` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
+| `elevation` | `number` | Elevation in meters |
+| `latitude` | `number` | Latitude of the point |
+| `longitude` | `number` | Longitude of the point |
 
 #### Example: Load
 

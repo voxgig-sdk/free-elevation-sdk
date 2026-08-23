@@ -243,9 +243,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `elevation` |  |
-| `latitude` |  |
-| `longitude` |  |
+| `elevation` | Elevation in meters |
+| `latitude` | Latitude of the point |
+| `longitude` | Longitude of the point |
 
 Operations: List, Load.
 
@@ -271,9 +271,9 @@ Create an instance: `local elevation = client:Elevation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `elevation` | `number` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
+| `elevation` | `number` | Elevation in meters |
+| `latitude` | `number` | Latitude of the point |
+| `longitude` | `number` | Longitude of the point |
 
 #### Example: Load
 

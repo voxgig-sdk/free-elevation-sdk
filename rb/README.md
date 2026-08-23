@@ -252,9 +252,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `elevation` |  |
-| `latitude` |  |
-| `longitude` |  |
+| `elevation` | Elevation in meters |
+| `latitude` | Latitude of the point |
+| `longitude` | Longitude of the point |
 
 Operations: List, Load.
 
@@ -280,9 +280,9 @@ Create an instance: `elevation = client.Elevation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `elevation` | `Float` |  |
-| `latitude` | `Float` |  |
-| `longitude` | `Float` |  |
+| `elevation` | `Float` | Elevation in meters |
+| `latitude` | `Float` | Latitude of the point |
+| `longitude` | `Float` | Longitude of the point |
 
 #### Example: Load
 

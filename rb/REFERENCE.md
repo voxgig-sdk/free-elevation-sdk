@@ -93,9 +93,9 @@ elevation = client.Elevation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elevation` | `Float` | No |  |
-| `latitude` | `Float` | No |  |
-| `longitude` | `Float` | No |  |
+| `elevation` | `Float` | No | Elevation in meters |
+| `latitude` | `Float` | No | Latitude of the point |
+| `longitude` | `Float` | No | Longitude of the point |
 
 ### Operations
 
