@@ -42,6 +42,7 @@ class FreeElevationConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
