@@ -14,11 +14,10 @@
 ---@class ElevationLoadMatch
 ---@field lat number
 ---@field lon number
+---@field json? boolean
 
 ---@class ElevationListMatch
----@field elevation? number
----@field latitude? number
----@field longitude? number
+---@field pts string
 
 local M = {}
 

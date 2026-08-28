@@ -23,13 +23,12 @@ type Elevation struct {
 type ElevationLoadMatch struct {
 	Lat float64 `json:"lat"`
 	Lon float64 `json:"lon"`
+	Json *bool `json:"json,omitempty"`
 }
 
 // ElevationListMatch is the typed request payload for Elevation.ListTyped.
 type ElevationListMatch struct {
-	Elevation *float64 `json:"elevation,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
+	Pts string `json:"pts"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

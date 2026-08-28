@@ -25,13 +25,12 @@ class ElevationLoadMatch
 {
     public float $lat;
     public float $lon;
+    public ?bool $json = null;
 }
 
 /** Request payload for Elevation#list. */
 class ElevationListMatch
 {
-    public ?float $elevation = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
+    public string $pts;
 }
 

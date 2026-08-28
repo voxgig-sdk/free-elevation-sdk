@@ -32,26 +32,22 @@ Elevation = Struct.new(
 #
 # @!attribute [rw] lon
 #   @return [Float]
+#
+# @!attribute [rw] json
+#   @return [Boolean, nil]
 ElevationLoadMatch = Struct.new(
   :lat,
   :lon,
+  :json,
   keyword_init: true
 )
 
 # Request payload for Elevation#list.
 #
-# @!attribute [rw] elevation
-#   @return [Float, nil]
-#
-# @!attribute [rw] latitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] longitude
-#   @return [Float, nil]
+# @!attribute [rw] pts
+#   @return [String]
 ElevationListMatch = Struct.new(
-  :elevation,
-  :latitude,
-  :longitude,
+  :pts,
   keyword_init: true
 )
 

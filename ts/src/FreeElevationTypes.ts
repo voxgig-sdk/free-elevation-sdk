@@ -14,11 +14,10 @@ export interface Elevation {
 export interface ElevationLoadMatch {
   lat: number
   lon: number
+  json?: boolean
 }
 
 export interface ElevationListMatch {
-  elevation?: number
-  latitude?: number
-  longitude?: number
+  pts: string
 }
 

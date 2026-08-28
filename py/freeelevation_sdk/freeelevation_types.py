@@ -22,12 +22,14 @@ class Elevation(TypedDict, total=False):
     longitude: float
 
 
-class ElevationLoadMatch(TypedDict):
+class ElevationLoadMatchRequired(TypedDict):
     lat: float
     lon: float
 
 
-class ElevationListMatch(TypedDict, total=False):
-    elevation: float
-    latitude: float
-    longitude: float
+class ElevationLoadMatch(ElevationLoadMatchRequired, total=False):
+    json: bool
+
+
+class ElevationListMatch(TypedDict):
+    pts: str
