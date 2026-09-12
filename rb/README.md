@@ -37,7 +37,7 @@ begin
   # list returns an Array of Elevation records — iterate directly.
   elevations = client.Elevation.list
   elevations.each do |item|
-    puts "#{item["elevation"]}"
+    puts "#{item["id"]} #{item["elevation"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -253,6 +253,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `elevation` | Elevation in meters |
+| `id` |  |
 | `latitude` | Latitude of the point |
 | `longitude` | Longitude of the point |
 
@@ -281,6 +282,7 @@ Create an instance: `elevation = client.Elevation`
 | Field | Type | Description |
 | --- | --- | --- |
 | `elevation` | `Float` | Elevation in meters |
+| `id` | `String` |  |
 | `latitude` | `Float` | Latitude of the point |
 | `longitude` | `Float` | Longitude of the point |
 

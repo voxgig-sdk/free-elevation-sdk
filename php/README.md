@@ -38,7 +38,7 @@ try {
     // list() returns an array of Elevation records — iterate directly.
     $elevations = $client->Elevation()->list();
     foreach ($elevations as $item) {
-        echo $item["elevation"] . "\n";
+        echo $item["id"] . " " . $item["elevation"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -263,6 +263,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `elevation` | Elevation in meters |
+| `id` |  |
 | `latitude` | Latitude of the point |
 | `longitude` | Longitude of the point |
 
@@ -291,6 +292,7 @@ Create an instance: `$elevation = $client->Elevation();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `elevation` | `float` | Elevation in meters |
+| `id` | `string` |  |
 | `latitude` | `float` | Latitude of the point |
 | `longitude` | `float` | Longitude of the point |
 

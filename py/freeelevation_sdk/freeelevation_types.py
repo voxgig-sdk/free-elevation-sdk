@@ -18,6 +18,7 @@ from typing import TypedDict, Any
 
 class Elevation(TypedDict, total=False):
     elevation: float
+    id: str
     latitude: float
     longitude: float
 

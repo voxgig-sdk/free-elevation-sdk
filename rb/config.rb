@@ -49,6 +49,10 @@ module FreeElevationConfig
               "type" => "`$NUMBER`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "latitude",
               "short" => "Latitude of the point",
               "type" => "`$NUMBER`",
@@ -59,6 +63,15 @@ module FreeElevationConfig
               "type" => "`$NUMBER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+            "parts" => [
+              "lat",
+              "lon",
+            ],
+            "sep" => "/",
+          },
           "name" => "elevation",
           "op" => {
             "list" => {
@@ -81,8 +94,10 @@ module FreeElevationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/elevation",
-                  "parts" => [
-                    "elevation",
+                  "segments" => [
+                    {
+                      "lit" => "elevation",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -93,6 +108,9 @@ module FreeElevationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "elevation",
+                  ],
                 },
               ],
             },
@@ -132,10 +150,16 @@ module FreeElevationConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/elevation/{lat}/{lon}",
-                  "parts" => [
-                    "elevation",
-                    "{lat}",
-                    "{lon}",
+                  "segments" => [
+                    {
+                      "lit" => "elevation",
+                    },
+                    {
+                      "var" => "lat",
+                    },
+                    {
+                      "var" => "lon",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -148,6 +172,11 @@ module FreeElevationConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "elevation",
+                    "{lat}",
+                    "{lon}",
+                  ],
                 },
               ],
             },

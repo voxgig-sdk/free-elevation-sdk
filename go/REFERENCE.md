@@ -99,6 +99,7 @@ fmt.Println(elevation.GetName()) // "elevation"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `elevation` | `float64` | No | Elevation in meters |
+| `id` | `string` | No |  |
 | `latitude` | `float64` | No | Latitude of the point |
 | `longitude` | `float64` | No | Longitude of the point |
 

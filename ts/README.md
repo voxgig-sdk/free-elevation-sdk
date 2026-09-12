@@ -163,7 +163,7 @@ await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -307,6 +307,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `elevation` | Elevation in meters |
+| `id` |  |
 | `latitude` | Latitude of the point |
 | `longitude` | Longitude of the point |
 
@@ -335,6 +336,7 @@ Create an instance: `const elevation = client.Elevation()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `elevation` | `number` | Elevation in meters |
+| `id` | `string` |  |
 | `latitude` | `number` | Latitude of the point |
 | `longitude` | `number` | Longitude of the point |
 

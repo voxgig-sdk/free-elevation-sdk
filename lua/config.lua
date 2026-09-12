@@ -37,6 +37,10 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "latitude",
             ["short"] = "Latitude of the point",
             ["type"] = "`$NUMBER`",
@@ -46,6 +50,15 @@ local function make_config()
             ["short"] = "Longitude of the point",
             ["type"] = "`$NUMBER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+          ["parts"] = {
+            "lat",
+            "lon",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "elevation",
         ["op"] = {
@@ -69,8 +82,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/elevation",
-                ["parts"] = {
-                  "elevation",
+                ["segments"] = {
+                  {
+                    ["lit"] = "elevation",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -80,6 +95,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "elevation",
                 },
               },
             },
@@ -120,10 +138,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/elevation/{lat}/{lon}",
-                ["parts"] = {
-                  "elevation",
-                  "{lat}",
-                  "{lon}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "elevation",
+                  },
+                  {
+                    ["var"] = "lat",
+                  },
+                  {
+                    ["var"] = "lon",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -135,6 +159,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "elevation",
+                  "{lat}",
+                  "{lon}",
                 },
               },
             },

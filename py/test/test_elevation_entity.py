@@ -88,9 +88,13 @@ class TestElevationEntity:
         assert isinstance(elevation_ref01_list_result, list)
 
         # LOAD
-        elevation_ref01_match_dt0 = {}
+        elevation_ref01_match_dt0 = {
+            "id": elevation_ref01_data["id"],
+        }
         elevation_ref01_data_dt0_loaded = elevation_ref01_ent.load(elevation_ref01_match_dt0, None)
-        assert elevation_ref01_data_dt0_loaded is not None
+        elevation_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(elevation_ref01_data_dt0_loaded))
+        assert elevation_ref01_data_dt0_load_result is not None
+        assert elevation_ref01_data_dt0_load_result["id"] == elevation_ref01_data["id"]
 
 
 
@@ -139,6 +143,10 @@ def _elevation_basic_setup(extra):
 
     if env.get("FREE_ELEVATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
             },
             extra or {},

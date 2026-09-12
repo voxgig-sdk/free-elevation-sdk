@@ -98,7 +98,7 @@ func TestElevationEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		elevationRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.elevation", setup.data)))
+		elevationRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.elevation")))
 		var elevationRef01Data map[string]any
 		if len(elevationRef01DataRaw) > 0 {
 			elevationRef01Data = core.ToMapAny(elevationRef01DataRaw[0][1])
@@ -121,13 +121,19 @@ func TestElevationEntity(t *testing.T) {
 		}
 
 		// LOAD
-		elevationRef01MatchDt0 := map[string]any{}
+		elevationRef01MatchDt0 := map[string]any{
+			"id": elevationRef01Data["id"],
+		}
 		elevationRef01DataDt0Loaded, err := elevationRef01Ent.Load(elevationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if elevationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		elevationRef01DataDt0LoadResult := core.ToMapAny(entityData(elevationRef01DataDt0Loaded))
+		if elevationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if elevationRef01DataDt0LoadResult["id"] != elevationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -157,7 +163,7 @@ func elevationBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"elevation01", "elevation02", "elevation03", "lat01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -185,10 +191,22 @@ func elevationBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["FREE_ELEVATION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewFreeElevationSDK(core.ToMapAny(mergedOpts))
 	}

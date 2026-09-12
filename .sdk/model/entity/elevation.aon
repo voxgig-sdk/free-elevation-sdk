@@ -12,6 +12,11 @@ main: kit: entity: elevation: {
       type: "`$NUMBER`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "latitude"
       req: false
       short: "Latitude of the point"
@@ -24,6 +29,16 @@ main: kit: entity: elevation: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "lat"
+      "lon"
+    ]
+    sep: "/"
+  }
 
   name: "elevation"
   op: {
@@ -45,8 +60,10 @@ main: kit: entity: elevation: {
           }
           method: "GET"
           orig: "/elevation"
-          parts: [
-            "elevation"
+          segments: [
+            {
+              lit: "elevation"
+            }
           ]
           select: {
             exist: [
@@ -95,10 +112,16 @@ main: kit: entity: elevation: {
           }
           method: "GET"
           orig: "/elevation/{lat}/{lon}"
-          parts: [
-            "elevation"
-            "{lat}"
-            "{lon}"
+          segments: [
+            {
+              lit: "elevation"
+            }
+            {
+              var: "lat"
+            }
+            {
+              var: "lon"
+            }
           ]
           select: {
             exist: [

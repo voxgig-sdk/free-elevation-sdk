@@ -15,6 +15,7 @@ import (
 // Elevation is the typed data model for the elevation entity.
 type Elevation struct {
 	Elevation *float64 `json:"elevation,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 }

@@ -43,7 +43,7 @@ local elevations, err = client:Elevation():list()
 if err then error(err) end
 
 for _, item in ipairs(elevations) do
-  print(item["elevation"])
+  print(item["id"], item["elevation"])
 end
 ```
 
@@ -244,6 +244,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `elevation` | Elevation in meters |
+| `id` |  |
 | `latitude` | Latitude of the point |
 | `longitude` | Longitude of the point |
 
@@ -272,6 +273,7 @@ Create an instance: `local elevation = client:Elevation(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `elevation` | `number` | Elevation in meters |
+| `id` | `string` |  |
 | `latitude` | `number` | Latitude of the point |
 | `longitude` | `number` | Longitude of the point |
 

@@ -7,6 +7,7 @@
 
 export interface Elevation {
   elevation?: number
+  id?: string
   latitude?: number
   longitude?: number
 }

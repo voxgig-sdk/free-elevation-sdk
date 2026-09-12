@@ -270,6 +270,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"elevation"` | Elevation in meters |
+| `"id"` |  |
 | `"latitude"` | Latitude of the point |
 | `"longitude"` | Longitude of the point |
 
@@ -298,6 +299,7 @@ Create an instance: `elevation := client.Elevation(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `elevation` | `float64` | Elevation in meters |
+| `id` | `string` |  |
 | `latitude` | `float64` | Latitude of the point |
 | `longitude` | `float64` | Longitude of the point |
 

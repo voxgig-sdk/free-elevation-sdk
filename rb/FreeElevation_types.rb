@@ -13,6 +13,9 @@
 # @!attribute [rw] elevation
 #   @return [Float, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
@@ -20,6 +23,7 @@
 #   @return [Float, nil]
 Elevation = Struct.new(
   :elevation,
+  :id,
   :latitude,
   :longitude,
   keyword_init: true

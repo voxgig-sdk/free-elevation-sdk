@@ -16,6 +16,7 @@ declare(strict_types=1);
 class Elevation
 {
     public ?float $elevation = null;
+    public ?string $id = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
 }

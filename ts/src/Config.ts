@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -72,6 +83,10 @@ class Config {
           "type": "`$NUMBER`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "latitude",
           "short": "Latitude of the point",
           "type": "`$NUMBER`"
@@ -82,6 +97,15 @@ class Config {
           "type": "`$NUMBER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id",
+        "parts": [
+          "lat",
+          "lon"
+        ],
+        "sep": "/"
+      },
       "name": "elevation",
       "op": {
         "list": {
@@ -104,8 +128,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/elevation",
-              "parts": [
-                "elevation"
+              "segments": [
+                {
+                  "lit": "elevation"
+                }
               ],
               "select": {
                 "exist": [
@@ -115,7 +141,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "elevation"
+              ]
             }
           ]
         },
@@ -155,10 +184,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/elevation/{lat}/{lon}",
-              "parts": [
-                "elevation",
-                "{lat}",
-                "{lon}"
+              "segments": [
+                {
+                  "lit": "elevation"
+                },
+                {
+                  "var": "lat"
+                },
+                {
+                  "var": "lon"
+                }
               ],
               "select": {
                 "exist": [
@@ -170,7 +205,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "elevation",
+                "{lat}",
+                "{lon}"
+              ]
             }
           ]
         }
@@ -190,6 +230,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

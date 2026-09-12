@@ -8,6 +8,7 @@
 
 ---@class Elevation
 ---@field elevation? number
+---@field id? string
 ---@field latitude? number
 ---@field longitude? number
 

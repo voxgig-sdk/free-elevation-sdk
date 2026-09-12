@@ -2,37 +2,37 @@
   "existing": {
     "elevation": {
       "ELEVATION00": {
-        "elevation": 30,
-        "latitude": 31,
-        "longitude": 32,
+        "elevation": 40,
+        "id": "ELEVATION00",
+        "latitude": 42,
+        "longitude": 43,
         "lat": "LAT01",
-        "lon": "LON01",
-        "id": "ELEVATION00"
+        "lon": "LON01"
       },
       "ELEVATION01": {
-        "elevation": 60,
-        "latitude": 61,
-        "longitude": 62,
+        "elevation": 80,
+        "id": "ELEVATION01",
+        "latitude": 82,
+        "longitude": 83,
         "lat": "LAT01",
-        "lon": "LON01",
-        "id": "ELEVATION01"
+        "lon": "LON01"
       },
       "ELEVATION02": {
-        "elevation": 90,
-        "latitude": 91,
-        "longitude": 92,
+        "elevation": 120,
+        "id": "ELEVATION02",
+        "latitude": 122,
+        "longitude": 123,
         "lat": "LAT01",
-        "lon": "LON01",
-        "id": "ELEVATION02"
+        "lon": "LON01"
       }
     }
   },
   "new": {
     "elevation": {
       "elevation_ref01": {
-        "elevation": 120,
-        "latitude": 121,
-        "longitude": 122
+        "elevation": 160,
+        "latitude": 162,
+        "longitude": 163
       }
     }
   }

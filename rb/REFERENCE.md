@@ -94,6 +94,7 @@ elevation = client.Elevation
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `elevation` | `Float` | No | Elevation in meters |
+| `id` | `String` | No |  |
 | `latitude` | `Float` | No | Latitude of the point |
 | `longitude` | `Float` | No | Longitude of the point |
 

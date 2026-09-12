@@ -91,6 +91,7 @@ local elevation = client:Elevation(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `elevation` | `number` | No | Elevation in meters |
+| `id` | `string` | No |  |
 | `latitude` | `number` | No | Latitude of the point |
 | `longitude` | `number` | No | Longitude of the point |
 
