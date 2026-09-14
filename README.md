@@ -105,7 +105,7 @@ local results, err = client:Elevation():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-elevation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
 | Python | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
 | PHP | `voxgig-sdk/free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/free-elevation-sdk/go` | `go get github.com/voxgig-sdk/free-elevation-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Elevation():list()
 ### TypeScript
 
 ```ts
-import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
+import { FreeElevationSDK } from '@voxgig-sdk/free-elevation-sdk'
 
 const client = new FreeElevationSDK()
 

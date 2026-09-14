@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
+import { FreeElevationSDK } from '@voxgig-sdk/free-elevation-sdk'
 
 const client = new FreeElevationSDK()
 ```
@@ -435,7 +435,7 @@ free-elevation/
 Import the SDK from the package root:
 
 ```ts
-import { FreeElevationSDK } from '@voxgig-sdk/free-elevation'
+import { FreeElevationSDK } from '@voxgig-sdk/free-elevation-sdk'
 ```
 
 ### Entity state
