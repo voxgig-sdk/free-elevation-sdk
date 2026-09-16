@@ -35,5 +35,159 @@
         "longitude": 163
       }
     }
+  },
+  "requests": {
+    "GET /elevation": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMultipleElevations",
+        "parameters": [
+          {
+            "description": "Array of coordinate pairs in format [[lat1,lon1],[lat2,lon2],[lat3,lon3]]. Coordinates use WGS-84 datum.",
+            "example": "[[46.24566,6.17081],[46.85499,6.78134]]",
+            "in": "query",
+            "name": "pts",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "elevation": {
+                        "description": "Elevation in meters, or null if not available",
+                        "nullable": true,
+                        "type": "number"
+                      },
+                      "latitude": {
+                        "description": "Latitude of the point",
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "description": "Longitude of the point",
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response with elevation data for all provided coordinates"
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second limit on free plan)"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /elevation/{lat}/{lon}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSingleElevation",
+        "parameters": [
+          {
+            "description": "Latitude of the location (WGS-84)",
+            "example": 46.24566,
+            "in": "path",
+            "name": "lat",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Longitude of the location (WGS-84)",
+            "example": 6.17081,
+            "in": "path",
+            "name": "lon",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Append this parameter to have the result returned as JSON format",
+            "in": "query",
+            "name": "json",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "elevation": 42
+                },
+                "schema": {
+                  "properties": {
+                    "elevation": {
+                      "description": "Elevation in meters",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "example": "42",
+                "schema": {
+                  "example": "42",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response with elevation data"
+          },
+          "429": {
+            "description": "Rate limit exceeded (10 requests per second limit on free plan)"
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "elevation": {
+                      "type": "null"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Point is not in the DEM dataset"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

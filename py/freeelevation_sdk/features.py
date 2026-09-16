@@ -1,12 +1,18 @@
 # FreeElevation SDK feature factory
 
 from freeelevation_sdk.feature.base_feature import FreeElevationBaseFeature
+from freeelevation_sdk.feature.ratelimit_feature import FreeElevationRatelimitFeature
+from freeelevation_sdk.feature.retry_feature import FreeElevationRetryFeature
 from freeelevation_sdk.feature.test_feature import FreeElevationTestFeature
+from freeelevation_sdk.feature.timeout_feature import FreeElevationTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: FreeElevationBaseFeature(),
+    "ratelimit": lambda: FreeElevationRatelimitFeature(),
+    "retry": lambda: FreeElevationRetryFeature(),
     "test": lambda: FreeElevationTestFeature(),
+    "timeout": lambda: FreeElevationTimeoutFeature(),
 }
 
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // FreeElevation SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class FreeElevationFeatures
@@ -14,8 +17,14 @@ class FreeElevationFeatures
         switch ($name) {
             case "base":
                 return new FreeElevationBaseFeature();
+            case "ratelimit":
+                return new FreeElevationRatelimitFeature();
+            case "retry":
+                return new FreeElevationRetryFeature();
             case "test":
                 return new FreeElevationTestFeature();
+            case "timeout":
+                return new FreeElevationTimeoutFeature();
             default:
                 return new FreeElevationBaseFeature();
         }
@@ -31,7 +40,10 @@ class FreeElevationFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
