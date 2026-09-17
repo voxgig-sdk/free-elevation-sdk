@@ -105,12 +105,12 @@ local results, err = client:Elevation():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-elevation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
-| Python | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
-| PHP | `voxgig-sdk/free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-elevation-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/tags) |
+| Python | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/tags) |
+| PHP | `voxgig-sdk/free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/free-elevation-sdk/go` | `go get github.com/voxgig-sdk/free-elevation-sdk/go@latest` |
-| Ruby | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
-| Lua | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/releases) |
+| Ruby | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/tags) |
+| Lua | `voxgig-sdk-free-elevation` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-elevation-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/free-elevation-sdk/go-cli` | `go install github.com/voxgig-sdk/free-elevation-sdk/go-cli/cmd/free-elevation@latest` |
 | Go MCP server | `github.com/voxgig-sdk/free-elevation-sdk/go-mcp` | `go get github.com/voxgig-sdk/free-elevation-sdk/go-mcp@latest` |
 
