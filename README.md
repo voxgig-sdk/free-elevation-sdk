@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -128,13 +128,6 @@ const elevations = await client.Elevation().list({ pts: "example" })
 for (const elevation of elevations) {
   console.log(elevation)
 }
-
-// Load a specific elevation (returns a Elevation)
-const elevation = await client.Elevation().load({
-  lat: 1,
-  lon: 1,
-})
-console.log(elevation)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -229,15 +222,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(elevations)
-
-// Load a specific elevation
-elevation, err := client.Elevation(nil).Load(
-    map[string]any{"lat": 1, "lon": 1}, nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println(elevation)
 ```
 
 ### Ruby

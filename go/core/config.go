@@ -91,22 +91,26 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "elevation",
-						"short": "Elevation in meters",
+						"title": "Elevation",
 						"type": "`$NUMBER`",
+						"short": "Elevation in meters",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude of the point",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude of the point",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude of the point",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude of the point",
 					},
 				},
 				"id": map[string]any{
@@ -125,18 +129,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "[[46.24566,6.17081],[46.85499,6.78134]]",
-											"kind": "query",
-											"name": "pts",
-											"orig": "pts",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/elevation",
@@ -145,17 +137,30 @@ func MakeConfig() map[string]any {
 										"lit": "elevation",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"pts",
-									},
+								"parts": []any{
+									"elevation",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"elevation",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "pts",
+											"orig": "pts",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "[[46.24566,6.17081],[46.85499,6.78134]]",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"pts",
+									},
 								},
 							},
 						},
@@ -165,34 +170,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 46.24566,
-											"kind": "param",
-											"name": "lat",
-											"orig": "lat",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": 6.17081,
-											"kind": "param",
-											"name": "lon",
-											"orig": "lon",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "json",
-											"orig": "json",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/elevation/{lat}/{lon}",
@@ -207,6 +184,44 @@ func MakeConfig() map[string]any {
 										"var": "lon",
 									},
 								},
+								"parts": []any{
+									"elevation",
+									"{lat}",
+									"{lon}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 46.24566,
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 6.17081,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "json",
+											"orig": "json",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"json",
@@ -214,25 +229,12 @@ func MakeConfig() map[string]any {
 										"lon",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"elevation",
-									"{lat}",
-									"{lon}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"elevation",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},

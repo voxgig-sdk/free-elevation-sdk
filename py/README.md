@@ -52,7 +52,6 @@ except Exception as err:
 
 ### 3. Load an elevation
 
-Elevation is nested under lat, so provide the `lat`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python

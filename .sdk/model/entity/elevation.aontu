@@ -1,0 +1,158 @@
+# Entity: elevation
+
+main: kit: entity: elevation: {
+
+  alias: field: {}
+
+  fields: {
+    elevation: {
+      h: "Elevation"
+      n: "elevation"
+      r: false
+      sh: "Elevation in meters"
+      t: "`$NUMBER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude of the point"
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude of the point"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "lat"
+      "lon"
+    ]
+    sep: "/"
+  }
+
+  name: "elevation"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /elevation"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "[[46.24566,6.17081],[46.85499,6.78134]]"
+                k: "query"
+                n: "pts"
+                or: "pts"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/elevation"
+          q: {
+            exist: [
+              "pts"
+            ]
+          }
+          s: [
+            {
+              lit: "elevation"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /elevation/{lat}/{lon}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 46.24566
+                k: "param"
+                n: "lat"
+                or: "lat"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                ex: 6.17081
+                k: "param"
+                n: "lon"
+                or: "lon"
+                r: true
+                t: "`$NUMBER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "json"
+                or: "json"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/elevation/{lat}/{lon}"
+          q: {
+            exist: [
+              "json"
+              "lat"
+              "lon"
+            ]
+          }
+          s: [
+            {
+              lit: "elevation"
+            }
+            {
+              var: "lat"
+            }
+            {
+              var: "lon"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

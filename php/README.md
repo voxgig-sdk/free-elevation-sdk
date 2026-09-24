@@ -48,8 +48,6 @@ try {
 
 ### 3. Load an elevation
 
-Elevation is nested under lat, so provide the `lat`.
-
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Elevation record (throws on error).

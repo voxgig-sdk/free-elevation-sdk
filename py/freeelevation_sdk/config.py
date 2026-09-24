@@ -116,22 +116,26 @@ def make_config():
         "fields": [
           {
             "name": "elevation",
-            "short": "Elevation in meters",
+            "title": "Elevation",
             "type": "`$NUMBER`",
+            "short": "Elevation in meters",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "latitude",
-            "short": "Latitude of the point",
+            "title": "Latitude",
             "type": "`$NUMBER`",
+            "short": "Latitude of the point",
           },
           {
             "name": "longitude",
-            "short": "Longitude of the point",
+            "title": "Longitude",
             "type": "`$NUMBER`",
+            "short": "Longitude of the point",
           },
         ],
         "id": {
@@ -150,18 +154,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "[[46.24566,6.17081],[46.85499,6.78134]]",
-                      "kind": "query",
-                      "name": "pts",
-                      "orig": "pts",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/elevation",
@@ -170,18 +162,31 @@ def make_config():
                     "lit": "elevation",
                   },
                 ],
+                "parts": [
+                  "elevation",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "pts",
+                      "orig": "pts",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "[[46.24566,6.17081],[46.85499,6.78134]]",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "pts",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "elevation",
-                ],
               },
             ],
           },
@@ -190,34 +195,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 46.24566,
-                      "kind": "param",
-                      "name": "lat",
-                      "orig": "lat",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": 6.17081,
-                      "kind": "param",
-                      "name": "lon",
-                      "orig": "lon",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "json",
-                      "orig": "json",
-                      "type": "`$BOOLEAN`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/elevation/{lat}/{lon}",
@@ -232,6 +209,44 @@ def make_config():
                     "var": "lon",
                   },
                 ],
+                "parts": [
+                  "elevation",
+                  "{lat}",
+                  "{lon}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "lat",
+                      "orig": "lat",
+                      "type": "`$NUMBER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 46.24566,
+                    },
+                    {
+                      "name": "lon",
+                      "orig": "lon",
+                      "type": "`$NUMBER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 6.17081,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "json",
+                      "orig": "json",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "json",
@@ -239,25 +254,12 @@ def make_config():
                     "lon",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "elevation",
-                  "{lat}",
-                  "{lon}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "elevation",
-            ],
-          ],
+          "ancestors": [],
         },
       },
     },
